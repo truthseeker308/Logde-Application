@@ -48,8 +48,15 @@ namespace LodgeMinutes
 
             _uiTimer = new DispatcherTimer();
             _uiTimer.Interval = new TimeSpan( 0, 0, 0, 30 );
-            _uiTimer.Tick += uiTimer_Tick;
+            _uiTimer.Tick += _uiTimer_Tick;// uiTimer_Tick;
+            _uiTimer.Start();
+            _uiTimer.IsEnabled = true;
 
+        }
+
+        private void _uiTimer_Tick( object sender, EventArgs e )
+        {
+            this.textboxTime.Text = DateTime.Now.ToString( "HH::mm tt" );
         }
 
         #region Timer Events
