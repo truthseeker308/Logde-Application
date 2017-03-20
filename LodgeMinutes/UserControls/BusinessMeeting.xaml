@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="LodgeMinutes.UserControls.BusinessMeeting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LodgeMinutes.UserControls"
+             mc:Ignorable="d">
+    <Grid>
+        <TabControl Name="tabBusiness" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <TabItem Header="Basic Tasks">
+                <local:BasicTasks />
+            </TabItem>
+            <TabItem Header="Motions">
+                <local:Motions />
+            </TabItem>
+            <TabItem Header="Member - Applications">
+                <local:Applications />
+            </TabItem>
+            <TabItem Header="Members Demits / Suspenions">
+                <local:Demits />
+            </TabItem>
+            <TabItem Header="Members - Necrologies">
+                <local:Necrologies />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
