@@ -112,6 +112,9 @@
     <Compile Include="UserControls\BusinessMeeting.xaml.cs">
       <DependentUpon>BusinessMeeting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Closing.xaml.cs">
+      <DependentUpon>Closing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Degrees.xaml.cs">
       <DependentUpon>Degrees.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,9 @@
     </Compile>
     <Compile Include="UserControls\Notes.xaml.cs">
       <DependentUpon>Notes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Opening.xaml.cs">
+      <DependentUpon>Opening.xaml</DependentUpon>
     </Compile>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
@@ -177,6 +183,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Closing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Degrees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Notes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Opening.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
