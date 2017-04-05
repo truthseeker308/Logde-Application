@@ -6,6 +6,26 @@
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
              mc:Ignorable="d">
     <Grid>
-            
+        <StackPanel Orientation="Vertical">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Degrees</Label>
+            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">First Section</Label>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Following Section(s)</Label>
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <Button Margin="0,0,10,0" Width="180">
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect> Second Section Begun
+                    </Button>
+                    <Button Width="180">
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect> Second/Third Section Begun
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
