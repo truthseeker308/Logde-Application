@@ -10,14 +10,14 @@
         <DockPanel>
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                 <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">District / Grand Lodge Visits</Label>
-                <ComboBox Width="200" Name="comboVisitType" SelectedIndex="0" Margin="0,5,0,0">
+                <ComboBox Width="250" Name="comboVisitType" SelectedIndex="0" Margin="0,5,0,0">
                     <ComboBox.Effect>
                         <DropShadowEffect/>
                     </ComboBox.Effect>
                     <ComboBoxItem>Official</ComboBoxItem>
                     <ComboBoxItem>Fraternal</ComboBoxItem>
                 </ComboBox>
-                <ComboBox Width="200" Name="comboVisitorType" SelectedIndex="0" Margin="0,5,0,0">
+                <ComboBox Width="250" Name="comboVisitorType" SelectedIndex="0" Margin="0,5,0,0">
                     <ComboBox.Effect>
                         <DropShadowEffect/>
                     </ComboBox.Effect>
@@ -28,11 +28,11 @@
                     <ComboBoxItem>Junior Grand Warden (Acting GM)</ComboBoxItem>
                 </ComboBox>
                 <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">If DDGM, what District?</Label>
-                <TextBox Name="textboxDDGM" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" MaxLength="149" />
+                <TextBox Name="textboxDDGM" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="249" />
                 <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Full title and Name of Visitor</Label>
-                <TextBox Name="textboxTitle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" MaxLength="149" />
+                <TextBox Name="textboxTitle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="249" />
                 <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Full Title and Name of Chairperson of Committee</Label>
-                <TextBox Name="textboxName" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="200" MaxLength="149" />
+                <TextBox Name="textboxName" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="250" MaxLength="249" />
                 <Button Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="buttonCommitVisitor" Click="buttonCommitVisitor_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
