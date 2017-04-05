@@ -70,6 +70,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfRichText, Version=1.0.16.0, Culture=neutral, PublicKeyToken=75ccead1e6af2af3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfRichText.1.0.16.2\lib\net45\WpfRichText.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +137,9 @@
     <Compile Include="UserControls\LodgeOpenClose.xaml.cs">
       <DependentUpon>LodgeOpenClose.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Monies.xaml.cs">
+      <DependentUpon>Monies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Motions.xaml.cs">
       <DependentUpon>Motions.xaml</DependentUpon>
     </Compile>
@@ -141,6 +148,9 @@
     </Compile>
     <Compile Include="UserControls\Notes.xaml.cs">
       <DependentUpon>Notes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OfficerFillIns.xaml.cs">
+      <DependentUpon>OfficerFillIns.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Opening.xaml.cs">
       <DependentUpon>Opening.xaml</DependentUpon>
@@ -211,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Monies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Motions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Notes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\OfficerFillIns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -44,8 +44,9 @@
                 <TabItem Header="Extra Items">
                     <userControls:ExtraItems />
                 </TabItem>
-                    <TabItem Header="Notes/Changes">
-                    </TabItem>
+                <TabItem Header="Notes/Changes">
+                    <userControls:Notes />
+                </TabItem>
             </TabControl>
         </DockPanel>
     </Grid>
