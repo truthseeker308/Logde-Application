@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Enums\Degrees.cs" />
+    <Compile Include="Enums\Forms.cs" />
     <Compile Include="Enums\LodgeStatus.cs" />
+    <Compile Include="Enums\MeetingTypes.cs" />
     <Compile Include="Models\LodgeModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
