@@ -4,6 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
-    <Grid Background="#FFE5E5E5"/>
+    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Members - Demits</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Demitting Brothers Name</Label>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Date of Demit</Label>
+        <xctk:DateTimePicker Width="200" />
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center">Type of Demit</Label>
+        <ComboBox Margin="0,5,0,0" Width="200">
+            <ComboBoxItem>Certificate of Demit</ComboBoxItem>
+        </ComboBox>
+        <Button Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect> Commit
+        </Button>
+        <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Members - Suspensions NPD</Label>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Member to be Suspended</Label>
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Effective Date of Suspension</Label>
+        <xctk:DateTimePicker Width="200" />
+        <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Grand Lodge Non-Payment of Dues Policies followed and documented?</Label>
+        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect> Commit
+        </Button>
+    </StackPanel>
 </UserControl>
