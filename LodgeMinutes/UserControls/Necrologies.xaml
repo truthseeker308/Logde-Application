@@ -5,5 +5,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
              mc:Ignorable="d">
-    <Grid Background="#FFE5E5E5"/>
+    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+        <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Members - Necrologies</Label>
+        <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Departed Brother's Name(s)</Label>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="0" Margin="5,5,5,0" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,5,0" />
+            <TextBox Grid.Row="0" Grid.Column="2" Margin="5,5,5,0" />
+
+            <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,5,0" />
+            <TextBox Grid.Row="1" Grid.Column="2" Margin="5,5,5,0" />
+
+            <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,5,0" />
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,5,0" />
+            <TextBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,0" />
+
+        </Grid>
+        <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Page set aside in the reocrds for our departed brother(s)</Label>
+        <CheckBox Name="checkboxYes" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
+        <Button Name="buttonCommit" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonCommit_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect> Commit</Button>
+    </StackPanel>
 </UserControl>

@@ -20,9 +20,22 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Necrologies : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Necrologies"/> class.
+        /// </summary>
         public Necrologies()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonCommit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonCommit_Click( object sender, RoutedEventArgs e )
+        {
+            MessageBox.Show( "Commit" );
         }
     }
 }
