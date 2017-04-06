@@ -4,6 +4,72 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
-    <Grid Background="#FFE5E5E5"/>
+    <Grid Background="#FFE5E5E5">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+            <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Business Meeting Basic Tasks</Label>
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button Width="235" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect> Business Meeting Opened / Closed
+                    </Button>
+                    <Button Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect> Business Meeting Suspended / Re-opened
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5,0,5,0">
+                    <Label HorizontalAlignment="Center" VerticalAlignment="Center">Grand Constitutions Read</Label>
+                    <TextBox Margin="0,0,5,0"/>
+                    <CheckBox Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Cell Phone Policy Read</CheckBox>
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect> Commit
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Secretary Reports</Label>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Name="comboboxMinutes" Width="150" Text="Minutes">
+                </ComboBox>
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status">
+                    <ComboBoxItem>Accepted As Read</ComboBoxItem>
+                    <ComboBoxItem>Accepted As Amended</ComboBoxItem>
+                    <ComboBoxItem>Reading Deferred</ComboBoxItem>
+                </ComboBox>
+                <Button Margin="20,0,0,0">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect> Commit
+                </Button>
+            </StackPanel>
+
+            <Label  Margin="0,20,0,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Treasurer Reports</Label>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status">
+                    <ComboBoxItem>Accepted As Read</ComboBoxItem>
+                    <ComboBoxItem>Accepted As Amended</ComboBoxItem>
+                    <ComboBoxItem>Reading Deferred</ComboBoxItem>
+                </ComboBox>
+                <Button Margin="20,0,20,0">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect> Commit
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>
