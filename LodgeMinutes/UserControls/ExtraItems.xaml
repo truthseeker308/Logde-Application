@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
              mc:Ignorable="d">
     <Grid>
-            
+        <TabControl>
+            <TabItem Header="Money's Received &amp; Bills">
+                <local:Monies />
+            </TabItem>
+            <TabItem Header="Officer Fill-ins">
+                <local:OfficerFillIns />
+            </TabItem>
+        </TabControl>
     </Grid>  
 </UserControl>

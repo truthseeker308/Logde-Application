@@ -10,19 +10,56 @@
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Degrees</Label>
             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                 <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">First Section</Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                        <Label HorizontalAlignment="Center">Degree Type</Label>
+                        <ComboBox Name="comboboxDegreeType" HorizontalAlignment="Center" Width="200">
+                            <ComboBoxItem>Entered Apprentice</ComboBoxItem>
+                            <ComboBoxItem>Fellowcraft</ComboBoxItem>
+                            <ComboBoxItem>Master Mason</ComboBoxItem>
+                        </ComboBox>
+                        <Label Margin="0,15,0,0" HorizontalAlignment="Center">If more than 5 candidates, was dispensation recieved?</Label>
+                        <CheckBox HorizontalAlignment="Center" Name="checkboxDispensation" IsChecked="False">Yes</CheckBox>
+                        <Button Margin="0,5,0,0" Width="200" Name="FirstSectionBegun" Click="FirstSectionBegun_Click">
+                            <Button.Effect>
+                                <DropShadowEffect/>
+                            </Button.Effect>First Section Begun
+                        </Button>
+                        <Button Margin="0,10,0,0" Width="200" Name="FirstSectionEnded" Click="FirstSectionEnded_Click">
+                            <Button.Effect>
+                                <DropShadowEffect/>
+                            </Button.Effect>First Section Ended
+                        </Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Label>Candidate's Names</Label>
+                        <TextBox  Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                        <TextBox Width="200" MaxLength="200" Margin="0,5,0,0" />
+                    </StackPanel>
+                </Grid>
             </StackPanel>
             <StackPanel Margin="0,10,0,0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Following Section(s)</Label>
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <Button Margin="0,0,10,0" Width="180">
+                    <Button Margin="0,0,10,0" Width="200" Name="buttonSecond" Click="buttonSecond_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
-                        </Button.Effect> Second Section Begun
+                        </Button.Effect>Second Section Begun
                     </Button>
-                    <Button Width="180">
+                    <Button Width="200" Name="buttonThird" Click="buttonThird_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
-                        </Button.Effect> Second/Third Section Begun
+                        </Button.Effect>Second/Third Section Begun
                     </Button>
                 </StackPanel>
             </StackPanel>

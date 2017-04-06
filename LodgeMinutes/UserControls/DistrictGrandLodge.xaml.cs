@@ -35,7 +35,7 @@ namespace LodgeMinutes.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonCommitVisitor_Click( object sender, RoutedEventArgs e )
         {
-
+            MessageBox.Show( "Commit" );
         }
     }
 }

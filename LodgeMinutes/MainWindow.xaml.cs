@@ -40,6 +40,8 @@ namespace LodgeMinutes
             InitializeComponent();
 
             // initialize some member fields/controls
+            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm tt" );
+
             _aboutBox = new AboutBox();
 
             _saveTimer = new DispatcherTimer();
@@ -56,7 +58,7 @@ namespace LodgeMinutes
 
         private void _uiTimer_Tick( object sender, EventArgs e )
         {
-            this.textboxTime.Text = DateTime.Now.ToString( "HH::mm tt" );
+            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm tt" );
         }
 
         #region Timer Events

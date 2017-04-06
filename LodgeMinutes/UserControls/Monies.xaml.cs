@@ -20,9 +20,32 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Monies : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Monies"/> class.
+        /// </summary>
         public Monies()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonBills control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonBills_Click( object sender, RoutedEventArgs e )
+        {
+
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonMoney control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonMoney_Click( object sender, RoutedEventArgs e )
+        {
+
         }
     }
 }
