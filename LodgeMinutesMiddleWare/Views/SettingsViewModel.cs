@@ -163,7 +163,7 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Junior Warden
         /// </summary>
-        public string JunirWaden
+        public string JuniorWarden
         {
             get { return _juniorWarden; }
             set
@@ -322,7 +322,7 @@ namespace LodgeMinutesMiddleWare.Views
                 // TODO: how are we going to handle images
                 //_seal = Bitmap.FromFile( ConfigurationManager.AppSettings[Constants.LodgeLogo] );
 
-                _worshipfulMaster = ConfigurationManager.AppSettings[Constants.LodgeFullName];
+                _worshipfulMaster = ConfigurationManager.AppSettings[Constants.WorshipfulMaster];
                 _seniorWaden = ConfigurationManager.AppSettings[Constants.SeniorWaden];
                 _juniorWarden = ConfigurationManager.AppSettings[Constants.JuniorWarden];
 
