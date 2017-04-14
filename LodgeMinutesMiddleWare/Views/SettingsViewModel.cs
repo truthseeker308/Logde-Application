@@ -361,33 +361,33 @@ namespace LodgeMinutesMiddleWare.Views
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration( ConfigurationUserLevel.None );
 
-                ConfigurationManager.AppSettings[Constants.LodgeFullName] = _lodgeFullName;
-                ConfigurationManager.AppSettings[Constants.LodgeAbreviatedName] = _lodgeAbreviatedName;
-                ConfigurationManager.AppSettings[Constants.TotalMeetingCount] = _totalMeetingCurrentCount.ToString();
-                ConfigurationManager.AppSettings[Constants.RegularMeetingCount] = _regularMeetingCurrentCount.ToString();
+                config.AppSettings.Settings[Constants.LodgeFullName].Value = _lodgeFullName;
+                config.AppSettings.Settings[Constants.LodgeAbreviatedName].Value = _lodgeAbreviatedName;
+                config.AppSettings.Settings[Constants.TotalMeetingCount].Value = _totalMeetingCurrentCount.ToString();
+                config.AppSettings.Settings[Constants.RegularMeetingCount].Value = _regularMeetingCurrentCount.ToString();
 
                 // TODO: how are we going to handle images
                 //_seal = Bitmap.FromFile( ConfigurationManager.AppSettings[Constants.LodgeLogo] );
 
-                ConfigurationManager.AppSettings[Constants.LodgeFullName] = _worshipfulMaster;
-                ConfigurationManager.AppSettings[Constants.SeniorWaden] = _seniorWaden;
-                ConfigurationManager.AppSettings[Constants.JuniorWarden] = _juniorWarden;
+                config.AppSettings.Settings[Constants.WorshipfulMaster].Value = _worshipfulMaster;
+                config.AppSettings.Settings[Constants.SeniorWaden].Value = _seniorWaden;
+                config.AppSettings.Settings[Constants.JuniorWarden].Value = _juniorWarden;
 
-                ConfigurationManager.AppSettings[Constants.UsualLodgeMeetingLocations] = _meetingLocations;
+                config.AppSettings.Settings[Constants.UsualLodgeMeetingLocations].Value = _meetingLocations;
 
-                ConfigurationManager.AppSettings[Constants.NumberOfRegularMeetingsPerYear] = _regularMeetingsPerMonth.ToString();
+                config.AppSettings.Settings[Constants.NumberOfRegularMeetingsPerYear].Value = _regularMeetingsPerMonth.ToString();
 
                 // TODO: we need to do some parsing of dates here
                 //_monthsDark = new List<string>( ConfigurationManager.AppSettings[Constants.MonthsDark].Split( ',' ).Select( DateTime.Parse ).ToList() );
 
-                ConfigurationManager.AppSettings[Constants.TimeFormat] = _isTwelveHourTime.ToString();
+                config.AppSettings.Settings[Constants.TimeFormat].Value = _isTwelveHourTime.ToString();
 
-                ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth] = _officerInstallationMonth;
+                config.AppSettings.Settings[Constants.OfficerInstallationMonth].Value = _officerInstallationMonth;
 
-                ConfigurationManager.AppSettings[Constants.RememberedMinuteDates] = _rememberMinuteDates.ToString();
+                config.AppSettings.Settings[Constants.RememberedMinuteDates].Value = _rememberMinuteDates.ToString();
 
                 config.Save( ConfigurationSaveMode.Full );
-
+                ConfigurationManager.RefreshSection( "appSettings" );
 
                 return true;
             }
