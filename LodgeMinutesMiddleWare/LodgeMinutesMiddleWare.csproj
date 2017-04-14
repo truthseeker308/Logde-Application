@@ -57,9 +57,7 @@
     <Compile Include="Enums\LodgeStatus.cs" />
     <Compile Include="Enums\MeetingTypes.cs" />
     <Compile Include="Models\LodgeModel.cs" />
-    <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Managers\SettingsManager.cs" />
     <Compile Include="Views\SettingsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

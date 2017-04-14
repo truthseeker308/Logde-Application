@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LodgeMinutes.Forms"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Settings" Width="440" Height="445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="ThreeDBorderWindow" BorderBrush="#FFC9C9F0" Loaded="Window_Loaded">
+        Title="Settings" Width="440" Height="445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="ThreeDBorderWindow" BorderBrush="#FFC9C9F0" Loaded="Window_Loaded" Icon="/;component/LodgeMinutes.ico">
     <Window.Effect>
         <DropShadowEffect/>
     </Window.Effect>
@@ -27,6 +27,14 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Width" Value="150" />
             <Setter Property="Margin" Value="5,0,0,0"  />
+        </Style>
+        <Style TargetType="xctk:IntegerUpDown">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="5,0,0,0"  />
+            <Setter Property="Maximum" Value="1000" />
+            <Setter Property="Minimum" Value="1"  />
         </Style>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Visible">
@@ -53,34 +61,34 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" >Lodge Full Name</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Name="textboxFullName" MaxLength="50"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" Text="{Binding LodgeName}"></TextBox>
 
             <Label Grid.Row="1" Grid.Column="0">Lodge Abreviated Name</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Name="textboxAbbreviatedName" ></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding LodgeAbreviatedName}"></TextBox>
 
             <Label Grid.Row="2" Grid.Column="0">Total Meeting Current Count</Label>
-            <xctk:IntegerUpDown Name="myUpDownControl" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" HorizontalAlignment="Left" Width="150" Maximum="1000" Minimum="1" />
+            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding TotalMeetingCurrentCount}" />
 
             <Label Grid.Row="3" Grid.Column="0">Regular Meeting Current Count</Label>
-            <xctk:IntegerUpDown Name="myUpDownControl2" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" HorizontalAlignment="Left" Width="150" Minimum="1" Maximum="1000" />
+            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Value="{Binding RegularMeetingCurrentCount}" />
 
             <Label Grid.Row="4" Grid.Column="0">Logo/Seal</Label>
             <Image Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" />
 
             <Label Grid.Row="5" Grid.Column="0">Worshipful Master</Label>
-            <TextBox Grid.Row="5" Grid.Column="1" MaxLength="50"></TextBox>
+            <TextBox Grid.Row="5" Grid.Column="1" MaxLength="50" Text="{Binding WorshipfulMaster}"></TextBox>
 
             <Label Grid.Row="6" Grid.Column="0">Senior Warden</Label>
-            <TextBox Grid.Row="6" Grid.Column="1" MaxLength="50"></TextBox>
+            <TextBox Grid.Row="6" Grid.Column="1" MaxLength="50" Text="{Binding SeniorWarden}"></TextBox>
 
             <Label Grid.Row="7" Grid.Column="0">Junior Warden</Label>
-            <TextBox Grid.Row="7" Grid.Column="1" MaxLength="50"></TextBox>
+            <TextBox Grid.Row="7" Grid.Column="1" MaxLength="50" Text="{Binding JuniorWarden}"></TextBox>
 
             <Label Grid.Row="8" Grid.Column="0">Usual Lodge Meeting Locations</Label>
-            <TextBox Grid.Row="8" Grid.Column="1" MaxLength="50"></TextBox>
+            <TextBox Grid.Row="8" Grid.Column="1" MaxLength="50" Text="{Binding MeetingLocations}"></TextBox>
 
             <Label Grid.Row="9" Grid.Column="0">Number of Regular Meetings per Month</Label>
-            <xctk:IntegerUpDown Name="myUpDownContro3" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" HorizontalAlignment="Left" Width="150" Maximum="30" Minimum="1" />
+            <xctk:IntegerUpDown Grid.Row="9" Grid.Column="1" Value="{Binding NumberOfRegularMeetingPerMonth}" />
 
             <Label Grid.Row="10" Grid.Column="0">Usual Months 'Dark'</Label>
             <xctk:CheckComboBox Grid.Row="10" Grid.Column="1"  x:Name="_combo">
@@ -108,7 +116,7 @@
             <DatePicker Grid.Row="12" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Left" Width="150" Name="datePickerInstallationMonth" Margin="5,0,0,0"/>
 
             <Label Grid.Row="13" Grid.Column="0" >Remember Minute Dates</Label>
-            <CheckBox Grid.Row="13" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" Name="checkboxRememberMinutes"/>
+            <CheckBox Grid.Row="13" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" IsChecked="{Binding RememberMinuteDates}"/>
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="14" Grid.Column="1">
                 <Button Width="75">Save</Button>

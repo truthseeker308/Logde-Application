@@ -34,11 +34,11 @@ namespace LodgeMinutesMiddleWare.Views
 
         private int _regularMeetingsPerMonth;
 
-        private List<DateTime> _monthsDark;
+        private List<string> _monthsDark;
 
         private bool _isTwelveHourTime;
 
-        private DateTime _officerInstallationMonth;
+        private string _officerInstallationMonth;
 
         private bool _rememberMinuteDates;
 
@@ -211,7 +211,7 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets Usual Dark Months
         /// </summary>
-        public List<DateTime> DarkMonths
+        public List<string> DarkMonths
         {
             get { return _monthsDark; }
             set
@@ -243,7 +243,7 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Officer Installation Month
         /// </summary>
-        public DateTime OfficerInstallationMonth
+        public string OfficerInstallationMonth
         {
             get { return _officerInstallationMonth; }
             set
@@ -280,7 +280,7 @@ namespace LodgeMinutesMiddleWare.Views
         public SettingsViewModel()
         {
             // make sure we have our lists created to avoid NULL errors
-            _monthsDark = new List<DateTime>();
+            _monthsDark = new List<string>();
             _meetingLocations = new List<string>();
 
             this.Load();
@@ -336,7 +336,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 _isTwelveHourTime = bool.Parse( ConfigurationManager.AppSettings[Constants.TimeFormat] );
 
-                _officerInstallationMonth = DateTime.Parse( ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth] );
+                _officerInstallationMonth = ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth];
 
                 _rememberMinuteDates = bool.Parse( ConfigurationManager.AppSettings[Constants.RememberedMinuteDates] );
 

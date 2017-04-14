@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using LodgeMinutes.Forms;
 using System.Threading;
 using System.Windows.Threading;
+using LodgeMinutesMiddleWare.Views;
 
 namespace LodgeMinutes
 {
@@ -29,7 +30,10 @@ namespace LodgeMinutes
 
         private DispatcherTimer _saveTimer;
         private DispatcherTimer _uiTimer;
-                
+
+        private SettingsViewModel _settings;
+
+
         #endregion
 
         /// <summary>
@@ -39,8 +43,11 @@ namespace LodgeMinutes
         {
             InitializeComponent();
 
+            // get our settings from the app.config
+            _settings = new SettingsViewModel();
+
             // initialize some member fields/controls
-            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm tt" );
+            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm:ss tt" );
 
             _aboutBox = new AboutBox();
 
@@ -49,28 +56,23 @@ namespace LodgeMinutes
             _saveTimer.Tick += saveTimer_Tick;
 
             _uiTimer = new DispatcherTimer();
-            _uiTimer.Interval = new TimeSpan( 0, 0, 0, 30 );
-            _uiTimer.Tick += _uiTimer_Tick;// uiTimer_Tick;
+            _uiTimer.Interval = new TimeSpan( 0, 0, 0, 0, 500 );
+            _uiTimer.Tick += uiTimer_Tick;
             _uiTimer.Start();
             _uiTimer.IsEnabled = true;
 
         }
 
-        private void _uiTimer_Tick( object sender, EventArgs e )
-        {
-            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm tt" );
-        }
-
         #region Timer Events
 
         /// <summary>
-        /// Handles the Tick event of the uiTimer control.
+        /// 
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uiTimer_Tick( object sender, EventArgs e )
         {
-            this.textboxTime.Text = DateTime.Now.ToString( "HH::mm tt" );
+            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm:ss tt" );
         }
 
         /// <summary>
