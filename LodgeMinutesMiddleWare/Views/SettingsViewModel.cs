@@ -30,7 +30,7 @@ namespace LodgeMinutesMiddleWare.Views
 
         private string _juniorWarden;
 
-        private List<string> _meetingLocations;
+        private string _meetingLocations;
 
         private int _regularMeetingsPerMonth;
 
@@ -179,7 +179,7 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Usual Lodge Meeting Locations
         /// </summary>
-        public List<string> MeetingLocations
+        public string MeetingLocations
         {
             get { return _meetingLocations; }
             set
@@ -281,7 +281,6 @@ namespace LodgeMinutesMiddleWare.Views
         {
             // make sure we have our lists created to avoid NULL errors
             _monthsDark = new List<string>();
-            _meetingLocations = new List<string>();
 
             this.Load();
 
@@ -326,8 +325,8 @@ namespace LodgeMinutesMiddleWare.Views
                 _worshipfulMaster = ConfigurationManager.AppSettings[Constants.LodgeFullName];
                 _seniorWaden = ConfigurationManager.AppSettings[Constants.SeniorWaden];
                 _juniorWarden = ConfigurationManager.AppSettings[Constants.JuniorWarden];
-                
-                _meetingLocations = new List<string>( ConfigurationManager.AppSettings[Constants.UsualLodgeMeetingLocations].Split( ',' ).ToList() );
+
+                _meetingLocations = ConfigurationManager.AppSettings[Constants.UsualLodgeMeetingLocations];
 
                 _regularMeetingsPerMonth = int.Parse( ConfigurationManager.AppSettings[Constants.NumberOfRegularMeetingsPerYear] );
 
@@ -360,6 +359,36 @@ namespace LodgeMinutesMiddleWare.Views
         {
             try
             {
+                Configuration config = ConfigurationManager.OpenExeConfiguration( ConfigurationUserLevel.None );
+
+                ConfigurationManager.AppSettings[Constants.LodgeFullName] = _lodgeFullName;
+                ConfigurationManager.AppSettings[Constants.LodgeAbreviatedName] = _lodgeAbreviatedName;
+                ConfigurationManager.AppSettings[Constants.TotalMeetingCount] = _totalMeetingCurrentCount.ToString();
+                ConfigurationManager.AppSettings[Constants.RegularMeetingCount] = _regularMeetingCurrentCount.ToString();
+
+                // TODO: how are we going to handle images
+                //_seal = Bitmap.FromFile( ConfigurationManager.AppSettings[Constants.LodgeLogo] );
+
+                ConfigurationManager.AppSettings[Constants.LodgeFullName] = _worshipfulMaster;
+                ConfigurationManager.AppSettings[Constants.SeniorWaden] = _seniorWaden;
+                ConfigurationManager.AppSettings[Constants.JuniorWarden] = _juniorWarden;
+
+                ConfigurationManager.AppSettings[Constants.UsualLodgeMeetingLocations] = _meetingLocations;
+
+                ConfigurationManager.AppSettings[Constants.NumberOfRegularMeetingsPerYear] = _regularMeetingsPerMonth.ToString();
+
+                // TODO: we need to do some parsing of dates here
+                //_monthsDark = new List<string>( ConfigurationManager.AppSettings[Constants.MonthsDark].Split( ',' ).Select( DateTime.Parse ).ToList() );
+
+                ConfigurationManager.AppSettings[Constants.TimeFormat] = _isTwelveHourTime.ToString();
+
+                ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth] = _officerInstallationMonth;
+
+                ConfigurationManager.AppSettings[Constants.RememberedMinuteDates] = _rememberMinuteDates.ToString();
+
+                config.Save( ConfigurationSaveMode.Full );
+
+
                 return true;
             }
             catch( Exception )

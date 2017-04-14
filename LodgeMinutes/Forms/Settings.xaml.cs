@@ -1,17 +1,6 @@
 ﻿using LodgeMinutesMiddleWare.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace LodgeMinutes.Forms
 {
@@ -48,5 +37,28 @@ namespace LodgeMinutes.Forms
         {
             Mouse.OverrideCursor = null;
         }
+
+        /// <summary>
+        /// Handles the Click event of the buttonSave control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSave_Click( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                if( _settings.Save() )
+                {
+                    MessageBox.Show( "Settings saved successfully", "Success", MessageBoxButton.OK );
+                }
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
     }
+
 }
