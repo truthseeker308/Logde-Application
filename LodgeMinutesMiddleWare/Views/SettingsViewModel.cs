@@ -38,7 +38,7 @@ namespace LodgeMinutesMiddleWare.Views
 
         private bool _isTwelveHourTime;
 
-        private string _officerInstallationMonth;
+        private int _officerInstallationMonth;
 
         private bool _rememberMinuteDates;
 
@@ -243,7 +243,7 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Officer Installation Month
         /// </summary>
-        public string OfficerInstallationMonth
+        public int OfficerInstallationMonth
         {
             get { return _officerInstallationMonth; }
             set
@@ -335,7 +335,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 _isTwelveHourTime = bool.Parse( ConfigurationManager.AppSettings[Constants.TimeFormat] );
 
-                _officerInstallationMonth = ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth];
+                _officerInstallationMonth = int.Parse( ConfigurationManager.AppSettings[Constants.OfficerInstallationMonth] );
 
                 _rememberMinuteDates = bool.Parse( ConfigurationManager.AppSettings[Constants.RememberedMinuteDates] );
 
@@ -382,7 +382,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.TimeFormat].Value = _isTwelveHourTime.ToString();
 
-                config.AppSettings.Settings[Constants.OfficerInstallationMonth].Value = _officerInstallationMonth;
+                config.AppSettings.Settings[Constants.OfficerInstallationMonth].Value = _officerInstallationMonth.ToString();
 
                 config.AppSettings.Settings[Constants.RememberedMinuteDates].Value = _rememberMinuteDates.ToString();
 
