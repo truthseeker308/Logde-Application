@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LodgeMinutesMiddleWare.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace LodgeMinutes.Forms
     /// </summary>
     public partial class Settings : Window
     {
+        #region Fields
+
+        private SettingsViewModel _settings;
+
+        #endregion
+
+        /// <summary>
+        /// Creates a new instance of the settings class
+        /// </summary>
         public Settings()
         {
             InitializeComponent();
+
+            // get our settings and bind them to the form
+            _settings = new SettingsViewModel();
+            this.DataContext = _settings;
+
         }
 
         /// <summary>

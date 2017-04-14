@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Models
 {
-    public class SettingsModel
+    public class SettingsViewModel
     {
     }
 }
