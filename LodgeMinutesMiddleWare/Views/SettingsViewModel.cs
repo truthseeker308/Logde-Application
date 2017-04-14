@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Views
 {
-    public class SettingsViewModel : INotifyPropertyChanged
+    public sealed class SettingsViewModel : INotifyPropertyChanged
     {
         #region Fields
 
@@ -43,6 +43,13 @@ namespace LodgeMinutesMiddleWare.Views
         private bool _rememberMinuteDates;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private static SettingsViewModel _instance;
+
+        private static object _lock = new object();
+
+
+        private static readonly Lazy<SettingsViewModel> instance = new Lazy<SettingsViewModel>( () => new SettingsViewModel() );
 
         #endregion
 
@@ -272,27 +279,37 @@ namespace LodgeMinutesMiddleWare.Views
             }
         }
 
+        /// <summary>
+        /// Returns the single instance of the SettingsViewModel
+        /// </summary>
+        public static SettingsViewModel Instance
+        {
+            get
+            {
+                lock( _lock )
+                {
+                    if( _instance == null )
+                    {
+                        _instance = new SettingsViewModel();
+                    }
+
+                    return _instance;
+                }
+            }
+        }
+
         #endregion
 
         /// <summary>
         /// Creates a new instance of the SettingsViewModel class
         /// </summary>
-        public SettingsViewModel()
+        private SettingsViewModel()
         {
             // make sure we have our lists created to avoid NULL errors
             _monthsDark = new List<string>();
 
             this.Load();
 
-        }
-
-        /// <summary>
-        /// Creates a new instance of the SettingsViewModel class
-        /// </summary>
-        /// <param name="lodgeName"></param>
-        public SettingsViewModel( string lodgeName ) : this()
-        {
-            _lodgeFullName = lodgeName;
         }
 
         #region Private Methods
@@ -350,6 +367,14 @@ namespace LodgeMinutesMiddleWare.Views
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Refreshes this instance
+        /// </summary>
+        public void Refresh()
+        {
+            this.Load();
+        }
 
         /// <summary>
         /// Saves this instance

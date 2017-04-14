@@ -56,7 +56,11 @@
     <Compile Include="Enums\Forms.cs" />
     <Compile Include="Enums\LodgeStatus.cs" />
     <Compile Include="Enums\MeetingTypes.cs" />
+    <Compile Include="Enums\VisitorTypes.cs" />
+    <Compile Include="Enums\VisitTypes.cs" />
     <Compile Include="Models\LodgeModel.cs" />
+    <Compile Include="Models\MinutesModel.cs" />
+    <Compile Include="Models\VisitorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\SettingsViewModel.cs" />
   </ItemGroup>

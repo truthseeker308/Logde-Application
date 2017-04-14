@@ -26,13 +26,12 @@ namespace LodgeMinutes
     {
         #region Fields
 
+        private readonly string HEADER = "Secretary Application - ";
+
         private AboutBox _aboutBox;
 
         private DispatcherTimer _saveTimer;
         private DispatcherTimer _uiTimer;
-
-        private SettingsViewModel _settings;
-
 
         #endregion
 
@@ -44,8 +43,7 @@ namespace LodgeMinutes
             InitializeComponent();
 
             // get our settings from the app.config
-            _settings = new SettingsViewModel();
-
+            
             // initialize some member fields/controls
             this.textboxTime.Text = DateTime.Now.ToString( "hh:mm:ss tt" );
 
@@ -60,6 +58,10 @@ namespace LodgeMinutes
             _uiTimer.Tick += uiTimer_Tick;
             _uiTimer.Start();
             _uiTimer.IsEnabled = true;
+
+            this.Title = HEADER + SettingsViewModel.Instance.LodgeName;
+
+            //this.DataContext = SettingsViewModel.Instance;
 
         }
 
@@ -103,6 +105,9 @@ namespace LodgeMinutes
 
                 Settings formSettings = new Settings();
                 formSettings.ShowDialog();
+
+                this.Title = HEADER + SettingsViewModel.Instance.LodgeName;
+
             }
             finally
             {

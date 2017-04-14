@@ -11,8 +11,6 @@ namespace LodgeMinutes.Forms
     {
         #region Fields
 
-        private SettingsViewModel _settings;
-
         #endregion
 
         /// <summary>
@@ -23,8 +21,7 @@ namespace LodgeMinutes.Forms
             InitializeComponent();
 
             // get our settings and bind them to the form
-            _settings = new SettingsViewModel();
-            this.DataContext = _settings;
+            this.DataContext = SettingsViewModel.Instance;
 
         }
 
@@ -49,7 +46,7 @@ namespace LodgeMinutes.Forms
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                if( _settings.Save() )
+                if( SettingsViewModel.Instance.Save() )
                 {
                     MessageBox.Show( "Settings saved successfully", "Success", MessageBoxButton.OK );
                 }
