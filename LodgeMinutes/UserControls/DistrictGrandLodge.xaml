@@ -41,7 +41,7 @@
                 </Button>
                 <Label  Margin="0,10,0,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Notable Suite Members</Label>
             </StackPanel>
-            <ListBox Name="listBoxVisitors"  Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto"></ListBox>
+            <ListBox Name="listBoxVisitors"  Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding}"></ListBox>
         </DockPanel>
     </Grid>
 </UserControl>

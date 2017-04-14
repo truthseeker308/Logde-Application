@@ -63,6 +63,7 @@
     <Compile Include="Models\VisitorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\SettingsViewModel.cs" />
+    <Compile Include="Views\VisitorsCollectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

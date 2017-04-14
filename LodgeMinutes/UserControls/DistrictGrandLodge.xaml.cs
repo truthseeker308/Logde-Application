@@ -39,7 +39,7 @@ namespace LodgeMinutes.UserControls
 
             this.comboVisitorType.SelectedIndex = 0;
 
-            this.listBoxVisitors.ItemsSource = MinutesModel.Instance.Visitors;
+            this.listBoxVisitors.DataContext = MinutesModel.Instance.Visitors;
 
         }
 
@@ -110,8 +110,8 @@ namespace LodgeMinutes.UserControls
 
                     this.textboxDDGM.Text = this.textboxName.Text = this.textboxTitle.Text = String.Empty;
 
-                    this.listBoxVisitors.ItemsSource = null;
-                    this.listBoxVisitors.ItemsSource = MinutesModel.Instance.Visitors;
+                    //this.listBoxVisitors.ItemsSource = null;
+                    //this.listBoxVisitors.ItemsSource = MinutesModel.Instance.Visitors;
                 }
             }
             finally
