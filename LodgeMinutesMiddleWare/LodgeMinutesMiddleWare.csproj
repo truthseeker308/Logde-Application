@@ -38,6 +38,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -58,12 +59,12 @@
     <Compile Include="Enums\MeetingTypes.cs" />
     <Compile Include="Enums\VisitorTypes.cs" />
     <Compile Include="Enums\VisitTypes.cs" />
-    <Compile Include="Models\LodgeModel.cs" />
-    <Compile Include="Models\MinutesModel.cs" />
+    <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\Money.cs" />
+    <Compile Include="Views\MinutesViewModel.cs" />
     <Compile Include="Models\VisitorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\SettingsViewModel.cs" />
-    <Compile Include="Views\VisitorsCollectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

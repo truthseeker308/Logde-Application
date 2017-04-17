@@ -8,10 +8,10 @@
     <Grid>
         <TabControl x:Name="tabControl" VerticalContentAlignment="Top">
             <TabItem Header="Opening">
-                <local:Opening />
+                <local:Opening x:Name="ucOpening" />
             </TabItem>
             <TabItem Header="Change Degrees / WMs / Labor and Refresh / Closing">
-                <local:Closing />
+                <local:Closing x:Name="ucClose" />
             </TabItem>
         </TabControl>
     </Grid>

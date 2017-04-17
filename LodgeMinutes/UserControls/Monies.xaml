@@ -4,93 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
+              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical" VerticalAlignment="Top">
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Moneys Recieved / Paid to the Treasurer</Label>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
 
-            <Label HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">Amount of Money</Label>
-            <Label HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0">Purpose</Label>
-
-            <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="1" Grid.Column="2" Margin="0,5,0,0">Paid to Treasurer</CheckBox>
-
-            <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,5,0"/>
-            <CheckBox Grid.Row="2" Grid.Column="2" Margin="0,5,0,0">Paid to Treasurer</CheckBox>
-
-            <TextBox Grid.Row="3" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="3" Grid.Column="2" Margin="0,5,0,0">Paid to Treasurer</CheckBox>
-
-            <TextBox Grid.Row="4" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="4" Grid.Column="2" Margin="0,5,0,0">Paid to Treasurer</CheckBox>
-
-        </Grid>
-        <Button Margin="0,5,0,0" Name="buttonMoney" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonMoney_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect> Commit
-        </Button>
+        <DataGrid IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" x:Name="gridMonies" Height="100" ItemsSource="{Binding Monies}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
+          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}"/>
+                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FontWeight="Bold">Bills</Label>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">Amount of Money</Label>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">Company / Individual to be Paid</Label>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0">Good / Service Paid for</Label>
-
-            <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="5,5,5,0" />
-            <TextBox Grid.Row="1" Grid.Column="2" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="1" Grid.Column="3" Margin="0,5,0,0">Approved by Lodge</CheckBox>
-
-            <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="5,5,5,0" />
-            <TextBox Grid.Row="2" Grid.Column="2" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="2" Grid.Column="3" Margin="0,5,0,0">Approved by Lodge</CheckBox>
-
-            <TextBox Grid.Row="3" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="5,5,5,0" />
-            <TextBox Grid.Row="3" Grid.Column="2" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="3" Grid.Column="3" Margin="0,5,0,0">Approved by Lodge</CheckBox>
-
-            <TextBox Grid.Row="4" Grid.Column="0" Margin="5,5,5,0" />
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="5,5,5,0" />
-            <TextBox Grid.Row="4" Grid.Column="2" Margin="5,5,5,0" />
-            <CheckBox Grid.Row="4" Grid.Column="3" Margin="0,5,0,0">Approved by Lodge</CheckBox>
-
-        </Grid>
-        <Button Margin="0,5,0,0" Name="buttonBills" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonBills_Click">
-            <Button.Effect>
-                <DropShadowEffect/>
-            </Button.Effect> Commit
-        </Button>
+        <DataGrid FontSize="12" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" Height="100" ItemsSource="{Binding Bills}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
+          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}"/>
+                <DataGridTextColumn Header="Organization" Binding="{Binding Organization}"/>
+                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </UserControl>

@@ -39,8 +39,7 @@ namespace LodgeMinutes.UserControls
 
             this.comboVisitorType.SelectedIndex = 0;
 
-            this.listBoxVisitors.DataContext = MinutesModel.Instance.Visitors;
-
+            
         }
 
         /// <summary>
@@ -100,18 +99,19 @@ namespace LodgeMinutes.UserControls
                     SetClearControl( this.textboxDDGM );
                 }
 
-                // if we passed our validation we need to add it to our list below
-                // I'm sure this could be cleaned up to use databinding instead of directly accessing the controls
+                // if we passed our validation we need to add it to our list
                 if( _isValid )
                 {
-                    VisitorModel newVisitor = new VisitorModel( _visitorName, _district, _chairpersonName, _visitorType, _visitType );
-
-                    MinutesModel.Instance.Visitors.Add( newVisitor );
-
                     this.textboxDDGM.Text = this.textboxName.Text = this.textboxTitle.Text = String.Empty;
 
-                    //this.listBoxVisitors.ItemsSource = null;
-                    //this.listBoxVisitors.ItemsSource = MinutesModel.Instance.Visitors;
+                    VisitorModel newVisitor = new VisitorModel( _visitorName, _district, _chairpersonName, _visitorType, _visitType );
+
+                    MinutesViewModel.Instance.Visitors.Add( newVisitor );
+
+                    MinutesViewModel.Instance.VisitorsCount = MinutesViewModel.Instance.Visitors.Count();
+
+                    MinutesViewModel.Instance.Save();
+
                 }
             }
             finally
@@ -150,5 +150,6 @@ namespace LodgeMinutes.UserControls
             }
             
         }
+
     }
 }

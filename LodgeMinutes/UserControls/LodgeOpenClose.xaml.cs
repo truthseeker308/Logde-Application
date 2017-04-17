@@ -20,6 +20,19 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class LodgeOpenClose : UserControl
     {
+        /// <summary>
+        /// Gets the opening form.
+        /// </summary>
+        public Opening Opening {  get { return ucOpening; } }
+
+        /// <summary>
+        /// Gets the closing form.
+        /// </summary>
+        public Closing Closing {  get { return ucClose; } }
+
+        /// <summary>
+        /// Creates a new instance of the LodgeOpenClose class.
+        /// </summary>
         public LodgeOpenClose()
         {
             InitializeComponent();

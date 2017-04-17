@@ -15,7 +15,7 @@
                 </Button.Effect> Timestamp
             </Button>
             <TextBox Margin="0,10,0,0"
-              Name="texBoxMinutes"
+              Name="textBoxMinutes"
               TextWrapping="Wrap"
               AcceptsReturn="True"
               VerticalScrollBarVisibility="Visible">

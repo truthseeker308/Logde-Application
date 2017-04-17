@@ -8,10 +8,10 @@
     <Grid>
         <TabControl>
             <TabItem Header="Money's Received &amp; Bills">
-                <local:Monies />
+                <local:Monies x:Name="ucMonies" />
             </TabItem>
             <TabItem Header="Officer Fill-ins">
-                <local:OfficerFillIns />
+                <local:OfficerFillIns x:Name="ucFillins" />
             </TabItem>
         </TabControl>
     </Grid>  

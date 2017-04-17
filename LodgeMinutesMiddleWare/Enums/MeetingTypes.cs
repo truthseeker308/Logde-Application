@@ -10,10 +10,10 @@ namespace LodgeMinutesMiddleWare.Enums
     public enum MeetingTypes
     {
         [Description( "Regular" )]
-        Regular,
+        Regular = 0,
 
         [Description( "Special" )]
-        Special
+        Special = 1
     }
 
 }

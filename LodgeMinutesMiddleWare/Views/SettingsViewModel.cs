@@ -18,9 +18,9 @@ namespace LodgeMinutesMiddleWare.Views
 
         private string _lodgeAbreviatedName;
 
-        private int _totalMeetingCurrentCount;
+        private int _specialMeetingCount;
 
-        private int _regularMeetingCurrentCount;
+        private int _regularMeetingCount;
 
         private Bitmap _seal;
 
@@ -42,12 +42,15 @@ namespace LodgeMinutesMiddleWare.Views
 
         private bool _rememberMinuteDates;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private static SettingsViewModel _instance;
 
         private static object _lock = new object();
 
+        private string _savedMinutesDirectory;
+
+        private string _savedWordDirectory;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private static readonly Lazy<SettingsViewModel> instance = new Lazy<SettingsViewModel>( () => new SettingsViewModel() );
 
@@ -90,14 +93,14 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Total Meeting Current Count
         /// </summary>
-        public int TotalMeetingCurrentCount
+        public int SpecialMeetingCount
         {
-            get { return _totalMeetingCurrentCount; }
+            get { return _specialMeetingCount; }
             set
             {
-                if( _totalMeetingCurrentCount != value )
+                if( _specialMeetingCount != value )
                 {
-                    _totalMeetingCurrentCount = value;
+                    _specialMeetingCount = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -106,14 +109,14 @@ namespace LodgeMinutesMiddleWare.Views
         /// <summary>
         /// Gets or sets the Regular Meeting Current Count
         /// </summary>
-        public int RegularMeetingCurrentCount
+        public int RegularMeetingCount
         {
-            get { return _regularMeetingCurrentCount; }
+            get { return _regularMeetingCount; }
             set
             {
-                if( _regularMeetingCurrentCount != value )
+                if( _regularMeetingCount != value )
                 {
-                    _regularMeetingCurrentCount = value;
+                    _regularMeetingCount = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -333,8 +336,8 @@ namespace LodgeMinutesMiddleWare.Views
                 // read the values from the app.config file
                 _lodgeFullName = ConfigurationManager.AppSettings[Constants.LodgeFullName];
                 _lodgeAbreviatedName = ConfigurationManager.AppSettings[Constants.LodgeAbreviatedName];
-                _totalMeetingCurrentCount = int.Parse( ConfigurationManager.AppSettings[Constants.TotalMeetingCount] );
-                _regularMeetingCurrentCount = int.Parse( ConfigurationManager.AppSettings[Constants.RegularMeetingCount] );
+                _specialMeetingCount = int.Parse( ConfigurationManager.AppSettings[Constants.SpecialMeetingCount] );
+                _regularMeetingCount = int.Parse( ConfigurationManager.AppSettings[Constants.RegularMeetingCount] );
 
                 // TODO: how are we going to handle images
                 //_seal = Bitmap.FromFile( ConfigurationManager.AppSettings[Constants.LodgeLogo] );
@@ -356,6 +359,10 @@ namespace LodgeMinutesMiddleWare.Views
 
                 _rememberMinuteDates = bool.Parse( ConfigurationManager.AppSettings[Constants.RememberedMinuteDates] );
 
+                _savedWordDirectory = ConfigurationManager.AppSettings[Constants.SavedWordFilesDirectory];
+                _savedMinutesDirectory = ConfigurationManager.AppSettings[Constants.SavedMinutesDirectory];
+
+
             }
             catch( Exception )
             {
@@ -367,7 +374,7 @@ namespace LodgeMinutesMiddleWare.Views
         #endregion
 
         #region Public Methods
-
+        
         /// <summary>
         /// Refreshes this instance
         /// </summary>
@@ -388,8 +395,8 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.LodgeFullName].Value = _lodgeFullName;
                 config.AppSettings.Settings[Constants.LodgeAbreviatedName].Value = _lodgeAbreviatedName;
-                config.AppSettings.Settings[Constants.TotalMeetingCount].Value = _totalMeetingCurrentCount.ToString();
-                config.AppSettings.Settings[Constants.RegularMeetingCount].Value = _regularMeetingCurrentCount.ToString();
+                config.AppSettings.Settings[Constants.SpecialMeetingCount].Value = _specialMeetingCount.ToString();
+                config.AppSettings.Settings[Constants.RegularMeetingCount].Value = _regularMeetingCount.ToString();
 
                 // TODO: how are we going to handle images
                 //_seal = Bitmap.FromFile( ConfigurationManager.AppSettings[Constants.LodgeLogo] );

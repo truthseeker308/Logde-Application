@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LodgeMinutesMiddleWare.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,7 @@ namespace LodgeMinutes.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonMoney_Click( object sender, RoutedEventArgs e )
         {
-
+             
         }
     }
 }

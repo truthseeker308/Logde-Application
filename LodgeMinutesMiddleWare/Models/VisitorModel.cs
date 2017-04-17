@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Models
 {
+    [Serializable]
     public sealed class VisitorModel
     {
         /// <summary>

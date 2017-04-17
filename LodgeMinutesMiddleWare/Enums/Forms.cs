@@ -9,14 +9,14 @@ namespace LodgeMinutesMiddleWare.Enums
 {
     public enum Forms
     {
-        [Description("In Form")]
-        InForm,
-
         [Description( "In Due Form" )]
-        InDueForm,
+        InDueForm = 0,
 
+        [Description("In Form")]
+        InForm = 1,
+        
         [Description( "In Ample Form" )]
-        InAmpleForm
+        InAmpleForm = 2
     }
 
 }

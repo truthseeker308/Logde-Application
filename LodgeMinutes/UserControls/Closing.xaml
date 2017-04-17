@@ -15,7 +15,7 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0">
-            <Label   FontWeight="Bold">Change From Lasber to Refreshment And Refreshment to Labor Again</Label>
+            <Label FontWeight="Bold">Laber to Refreshment And Refreshment to Labor Again</Label>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" Grid.Row="0" Grid.Column="1">
             <Label FontWeight="Bold">Change Degrees</Label>
@@ -42,14 +42,14 @@
             <TextBlock/>
             <TextBlock Text="Closing Form"/>
             <ComboBox Name="comboboxClosingForm">
-                <ComboBoxItem>In Form</ComboBoxItem>
                 <ComboBoxItem>In Due Form</ComboBoxItem>
+                <ComboBoxItem>In Form</ComboBoxItem>
                 <ComboBoxItem>In Ample Form</ComboBoxItem>
             </ComboBox>
             <TextBlock/>
             <Button Name="buttonCloseMeeting">Close Meeting</Button>
             <TextBlock/>
-            <Button IsEnabled="False">Output Minutes</Button>
+            <Button IsEnabled="False" Name="buttonOutputMinutes">Output Minutes</Button>
         </StackPanel>
     </Grid>
 </UserControl>

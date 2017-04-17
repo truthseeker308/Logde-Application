@@ -29,6 +29,8 @@ namespace LodgeMinutesMiddleWare
         public static string ReopenLastMinutes = "ReopenLastMinutes";
         public static string NewMeetingMinutes = "NewMeetingMinutes";
         public static string TimerSaveIncrement = "TimerSaveIncrement";
+        public static string SavedWordFilesDirectory = "SavedWordFilesDirectory";
+        public static string SavedMinutesDirectory = "SavedMinutesDirectory";
 
     }
 }

@@ -21,6 +21,10 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class ExtraItems : UserControl
     {
+        public Monies Monies { get { return ucMonies; } }
+
+        public OfficerFillIns FillIns {  get { return ucFillins; } }
+
         public ExtraItems()
         {
             InitializeComponent();
