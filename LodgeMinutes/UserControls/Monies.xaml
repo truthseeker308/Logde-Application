@@ -29,5 +29,6 @@
                 <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button Name="buttonCommit" Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>
     </StackPanel>
 </UserControl>

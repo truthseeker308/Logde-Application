@@ -48,5 +48,20 @@ namespace LodgeMinutes.UserControls
         {
              
         }
+
+        private void buttonCommit_Click( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                MinutesViewModel.Instance.Save();
+
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
     }
 }
