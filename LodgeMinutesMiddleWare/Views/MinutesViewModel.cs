@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using System.Xml.Serialization;
@@ -84,6 +85,13 @@ namespace LodgeMinutesMiddleWare.Models
 
                     return s_instance;
                 //}
+            }
+            set
+            {
+                lock( s_lock )
+                {
+                    s_instance = value;
+                }
             }
         }
 
@@ -430,6 +438,22 @@ namespace LodgeMinutesMiddleWare.Models
         /// <returns></returns>
         public bool Load()
         {
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer( typeof( MinutesViewModel ) );
+
+                using( StreamReader reader = new StreamReader( this.FileName ) )
+                {
+                    MinutesViewModel.Instance = (MinutesViewModel)serializer.Deserialize( reader );
+                }
+                
+                return true;
+
+            }
+            catch( Exception )
+            {
+                throw;
+            }
 
             return false;
         }

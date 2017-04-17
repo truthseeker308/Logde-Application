@@ -125,8 +125,12 @@ namespace LodgeMinutes
                 {
                     Mouse.OverrideCursor = Cursors.Wait;
 
-                    // TODO: open the selected minutes
-                    Console.WriteLine( "OPENING" );
+                    MinutesViewModel.Instance.FileName = ( (OpenFileDialog)sender ).FileName;
+
+                    MinutesViewModel.Instance.Load();
+
+                    this.SetDataContexts();
+                    
                 }
             }
             finally
