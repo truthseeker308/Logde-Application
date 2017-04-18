@@ -20,6 +20,8 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class BusinessMeeting : UserControl
     {
+        public Necrologies Necrologies { get { return ucNecrologies; } }
+
         public BusinessMeeting()
         {
             InitializeComponent();

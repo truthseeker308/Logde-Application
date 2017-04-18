@@ -20,7 +20,7 @@
                 <local:Demits />
             </TabItem>
             <TabItem Header="Members - Necrologies">
-                <local:Necrologies />
+                <local:Necrologies x:Name="ucNecrologies" />
             </TabItem>
         </TabControl>
     </Grid>

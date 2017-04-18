@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -10,7 +11,8 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Views
 {
-    public sealed class SettingsViewModel : INotifyPropertyChanged
+    [Serializable]
+    public sealed class SettingsViewModel : ViewModeBase
     {
         #region Fields
 
@@ -50,7 +52,7 @@ namespace LodgeMinutesMiddleWare.Views
 
         private string _savedWordDirectory;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private string _lastUserFilename;
 
         private static readonly Lazy<SettingsViewModel> instance = new Lazy<SettingsViewModel>( () => new SettingsViewModel() );
 
@@ -283,6 +285,22 @@ namespace LodgeMinutesMiddleWare.Views
         }
 
         /// <summary>
+        /// Gets or sets the last filename used by the application
+        /// </summary>
+        public string LastFilename
+        {
+            get { return _lastUserFilename; }
+            set
+            {
+                if( _lastUserFilename != value )
+                {
+                    _lastUserFilename = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Returns the single instance of the SettingsViewModel
         /// </summary>
         public static SettingsViewModel Instance
@@ -316,15 +334,6 @@ namespace LodgeMinutesMiddleWare.Views
         }
 
         #region Private Methods
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="propertyName"></param>
-        private void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
-        {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
-        }
 
         /// <summary>
         /// Loads this instance
@@ -362,11 +371,12 @@ namespace LodgeMinutesMiddleWare.Views
                 _savedWordDirectory = ConfigurationManager.AppSettings[Constants.SavedWordFilesDirectory];
                 _savedMinutesDirectory = ConfigurationManager.AppSettings[Constants.SavedMinutesDirectory];
 
+                _lastUserFilename = ConfigurationManager.AppSettings[Constants.LastUseFilename];
 
             }
-            catch( Exception )
+            catch( Exception  ex)
             {
-                // TODO: add some logging or something
+                File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
                 throw;
             }
         }
@@ -418,14 +428,16 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.RememberedMinuteDates].Value = _rememberMinuteDates.ToString();
 
+                config.AppSettings.Settings[Constants.LastUseFilename].Value = _lastUserFilename.ToString();
+
                 config.Save( ConfigurationSaveMode.Full );
                 ConfigurationManager.RefreshSection( "appSettings" );
 
                 return true;
             }
-            catch( Exception )
+            catch( Exception ex )
             {
-                // TODO: add some logging or something
+                File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
                 return false;
             }
         }

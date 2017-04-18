@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Models
 {
-    public class Money: INotifyPropertyChanged, IEditableObject
+    public class Money: ModelBase
     {
         #region Fields
 
@@ -20,14 +20,6 @@ namespace LodgeMinutesMiddleWare.Models
         private string _purpose;
 
         private bool _paid;
-
-        private Money _parent;
-        private Money _current;
-        private Money _backup;
-
-        private bool _inTxn = false;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -87,37 +79,5 @@ namespace LodgeMinutesMiddleWare.Models
 
         }
 
-        private void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
-        {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
-        }
-
-        void IEditableObject.BeginEdit()
-        {
-            if( !_inTxn )
-            {
-                _backup = _current;
-                _inTxn = true;
-            }
-        }
-
-        void IEditableObject.EndEdit()
-        {
-            if( _inTxn )
-            {
-                _backup = new Money();
-                _inTxn = false;
-            }
-        }
-
-        void IEditableObject.CancelEdit()
-        {
-            if( _inTxn )
-            {
-                _current = _backup;
-                _inTxn = false;
-            }
-            
-        }
     }
 }

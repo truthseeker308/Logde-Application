@@ -13,7 +13,7 @@ namespace LodgeMinutesMiddleWare.Models
 {
     [Serializable]
     [XmlRoot("Minutes",IsNullable =false)]
-    public sealed class MinutesViewModel : INotifyPropertyChanged
+    public sealed class MinutesViewModel : ViewModeBase
     {
         #region Fields
 
@@ -25,6 +25,8 @@ namespace LodgeMinutesMiddleWare.Models
         private ObservableCollection<Bill> _bills;
 
         private ObservableCollection<Money> _monies;
+
+        private ObservableCollection<Candidate> _candidates;
 
         private string _location;
 
@@ -54,16 +56,16 @@ namespace LodgeMinutesMiddleWare.Models
 
         private int _specialMeetingCount;
 
+        private string _notes;
+
         [NonSerialized]
         private static object s_lock = new object();
 
         [NonSerialized]
         private static MinutesViewModel s_instance;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public event EventHandler Saved;
-
+        
         #endregion
 
         #region Properties
@@ -75,16 +77,17 @@ namespace LodgeMinutesMiddleWare.Models
         {
             get
             {
-                // TODO: we might need to make sure this thread safe
-                //lock( s_lock )
-                //{
+                // since we can be saving this automatically we need 
+                // to ensure thread safety
+                lock( s_lock )
+                {
                     if( s_instance == null )
                     {
                         s_instance = new MinutesViewModel();
                     }
 
                     return s_instance;
-                //}
+                }
             }
             set
             {
@@ -314,6 +317,28 @@ namespace LodgeMinutesMiddleWare.Models
 
         public string FileName { get; set; }
 
+        public string Notes
+        {
+            get
+            {
+                return _notes;
+            }
+            set
+            {
+                if( _notes != value )
+                {
+                    _notes = value;
+                    NotifyPropertyChanged();
+                }
+            }
+
+        }
+
+        public bool IsRegular
+        {
+            get { return _meetingType == MeetingTypes.Regular; }
+        }
+
         #endregion
 
         /// <summary>
@@ -335,7 +360,13 @@ namespace LodgeMinutesMiddleWare.Models
             _bills = new ObservableCollection<Models.Bill>();
 
             _monies = new ObservableCollection<Models.Money>();
-            
+
+            _candidates = new ObservableCollection<Candidate>();
+
+            _notes = String.Empty;
+
+            _location = String.Empty;
+
             _locations = new List<string>();
 
             _meetingDate = DateTime.Now;
@@ -345,15 +376,6 @@ namespace LodgeMinutesMiddleWare.Models
         }
 
         #region Private Methods
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="propertyName"></param>
-        private void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
-        {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
-        }
 
         private void OnSave( )
         {
@@ -392,7 +414,7 @@ namespace LodgeMinutesMiddleWare.Models
             {
                 if( String.IsNullOrWhiteSpace( FileName ) )
                 {
-                    FileName = String.Format( "temp__{0}.lodge", Guid.NewGuid().ToString() );
+                    FileName = String.Format( "temp__{0}.lodge", DateTime.Now.ToString("MM-dd-yyyy-hh-mm-ss-tt") );
                 }
 
                 XmlSerializer xsSubmit = new XmlSerializer( typeof( MinutesViewModel ) );
@@ -413,6 +435,11 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        /// <summary>
+        /// Saves this instance to the specified filename
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public bool SaveAs( string filename )
         {
             this.FileName = filename;
@@ -465,6 +492,17 @@ namespace LodgeMinutesMiddleWare.Models
         public bool Refresh()
         {
             return false;
+        }
+
+        #endregion
+
+        #region Overrides
+
+        public override string ToString()
+        {
+            // TODO: build a to string from our values
+            return "Justin LeCheminant";
+
         }
 
         #endregion

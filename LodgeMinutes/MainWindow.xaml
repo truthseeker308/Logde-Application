@@ -14,7 +14,7 @@
             <MenuItem Header="File">
                     <MenuItem Header="_New" Name="menuNew" Click="menuNew_Click" />
                     <MenuItem Header="_Open" Name="menuOpen" Click="menuOpen_Click" />
-                    <MenuItem Header="_Save" IsEnabled="False" Name="menuSave" Click="menuSave_Click" />
+                    <MenuItem Header="_Save" Name="menuSave" Click="menuSave_Click" />
                     <MenuItem Header="_SaveAs" Name="menuSaveAs" Click="menuSaveAs_Click" />
                     <Separator />
                     <MenuItem Header="Exit" Name="menuExit" Click="menuExit_Click"></MenuItem>
@@ -33,7 +33,7 @@
         </Menu>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem HorizontalAlignment="Left">
-                    <TextBlock Name="textboxFilename" />
+                    <TextBlock Name="textboxFilename" Text="{Binding FileName}" />
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
                     <TextBlock Name="textboxTime" Text="" />
@@ -46,7 +46,7 @@
                 <TabItem Header="Lodge Opening/Closing">
                     <userControls:LodgeOpenClose x:Name="ucLodge" />
                 </TabItem>
-                <TabItem Header="Business Meeting" IsEnabled="False">
+                <TabItem Header="Business Meeting" IsEnabled="{Binding IsRegular, Mode=OneWay}" >
                     <userControls:BusinessMeeting x:Name="ucBusiness" />
                 </TabItem>
                 <TabItem Header="Degrees">
@@ -58,7 +58,7 @@
                 <TabItem Header="Extra Items">
                     <userControls:ExtraItems x:Name="ucExtras" />
                 </TabItem>
-                <TabItem Header="Notes/Changes">
+                <TabItem Header="Notes/Changes" Name="tabNotes">
                     <userControls:Notes x:Name="ucNotes" />
                 </TabItem>
             </TabControl>

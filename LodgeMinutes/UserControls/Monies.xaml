@@ -12,9 +12,9 @@
         <DataGrid IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" x:Name="gridMonies" Height="100" ItemsSource="{Binding Monies}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
           CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}"/>
-                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*" />
+                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}" Width="*" />
+                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         
@@ -23,10 +23,10 @@
         <DataGrid FontSize="12" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" Height="100" ItemsSource="{Binding Bills}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
           CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}"/>
-                <DataGridTextColumn Header="Organization" Binding="{Binding Organization}"/>
-                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*" />
+                <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}" Width="*" />
+                <DataGridTextColumn Header="Organization" Binding="{Binding Organization}" Width="*" />
+                <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="buttonCommit" Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>

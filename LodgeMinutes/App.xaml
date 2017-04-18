@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:LodgeMinutes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!--Grid Styling-->
+        <Style TargetType="{x:Type DataGrid}" >
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="AlternationCount" Value="2" />
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="WhiteSmoke"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="LightBlue"></Setter>
+                    <Setter Property="Foreground" Value="Black"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Textbox Styling-->
+        <Style TargetType="{x:Type Label}" x:Key="LabelCenterBold" >
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <!--Label Bold Styling-->
 
     </Application.Resources>
 </Application>

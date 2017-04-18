@@ -31,6 +31,7 @@ namespace LodgeMinutesMiddleWare
         public static string TimerSaveIncrement = "TimerSaveIncrement";
         public static string SavedWordFilesDirectory = "SavedWordFilesDirectory";
         public static string SavedMinutesDirectory = "SavedMinutesDirectory";
+        public static string LastUseFilename = "LastUseFilename";
 
     }
 }

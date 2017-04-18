@@ -8,7 +8,7 @@
              mc:Ignorable="d">
     <Grid>
         <DockPanel LastChildFill="True">
-            <Label DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">Lodge Minutes</Label>
+            <Label DockPanel.Dock="Top" Style="{StaticResource LabelCenterBold}">Lodge Minutes</Label>
             <Button DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
@@ -18,7 +18,7 @@
               Name="textBoxMinutes"
               TextWrapping="Wrap"
               AcceptsReturn="True"
-              VerticalScrollBarVisibility="Visible">
+              VerticalScrollBarVisibility="Visible" Text="{Binding Notes, Mode=TwoWay}">
             </TextBox>
         </DockPanel>
     </Grid>

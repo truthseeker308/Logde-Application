@@ -19,6 +19,7 @@ using LodgeMinutesMiddleWare.Views;
 using Microsoft.Win32;
 using System.IO;
 using LodgeMinutesMiddleWare.Models;
+using LodgeMinutesMiddleWare.Enums;
 
 namespace LodgeMinutes
 {
@@ -59,6 +60,7 @@ namespace LodgeMinutes
             _saveTimer = new DispatcherTimer();
             _saveTimer.Interval = new TimeSpan( 0, 0, 0, 30 );
             _saveTimer.Tick += saveTimer_Tick;
+            _saveTimer.Start();
 
             _uiTimer = new DispatcherTimer();
             _uiTimer.Interval = new TimeSpan( 0, 0, 0, 0, 500 );
@@ -85,18 +87,17 @@ namespace LodgeMinutes
             _openFile.Multiselect = false;
             _openFile.FileOk += openFile_FileOk;
 
-            this.SetDataContexts();
+            this.LoadMinuteValues();
 
             MinutesViewModel.Instance.Saved += Instance_Saved;
 
-            this.ucLodge.Opening.buttonCompleteOpening.Click += ButtonCompleteOpening_Click;
-
+            this.ucLodge.Opening.buttonCompleteOpening.Click += ButtonCommitOpening_Click;
 
         }
 
-        private void ButtonCompleteOpening_Click( object sender, RoutedEventArgs e )
+        private void ButtonCommitOpening_Click( object sender, RoutedEventArgs e )
         {
-            this.ucBusiness.IsEnabled = MinutesViewModel.Instance.MeetingType == (int)LodgeMinutesMiddleWare.Enums.MeetingTypes.Regular;
+            this.LoadMinuteValues();
         }
 
         private void Instance_Saved( object sender, EventArgs e )
@@ -104,14 +105,18 @@ namespace LodgeMinutes
             this.textboxFilename.Text = MinutesViewModel.Instance.FileName;
         }
 
+        /// <summary>
+        /// Sets the data contexts for all our user controls
+        /// </summary>
         private void SetDataContexts()
         {
-            this.DataContext = MinutesViewModel.Instance.FileName;
-
+            this.DataContext = MinutesViewModel.Instance;
             this.ucLodge.Opening.DataContext = MinutesViewModel.Instance;
             this.ucLodge.Closing.DataContext = MinutesViewModel.Instance;
             this.ucVisitors.DataContext = MinutesViewModel.Instance.Visitors;
             this.ucExtras.Monies.DataContext = MinutesViewModel.Instance;
+            this.ucNotes.CurrentNotes.DataContext = MinutesViewModel.Instance;
+            this.ucBusiness.Necrologies.DataContext = MinutesViewModel.Instance;
 
             // TODO: set all our user controls data contexts
 
@@ -129,8 +134,8 @@ namespace LodgeMinutes
 
                     MinutesViewModel.Instance.Load();
 
-                    this.SetDataContexts();
-                    
+                    LoadMinuteValues();
+                                        
                 }
             }
             finally
@@ -152,12 +157,10 @@ namespace LodgeMinutes
                     if( MinutesViewModel.Instance.Save() )
                     {
                         MessageBox.Show( "Minutes saved.", "Success" );
-                        menuSave.IsEnabled = true;
                     }
                     else
                     {
                         MessageBox.Show( "Error saving minutes.", "Error" );
-                        menuSave.IsEnabled = false;
                     }
                 }
             }
@@ -165,6 +168,16 @@ namespace LodgeMinutes
             {
                 Mouse.OverrideCursor = null;
             }
+        }
+
+        private void LoadMinuteValues()
+        {
+            var meetingType = (MeetingTypes)MinutesViewModel.Instance.MeetingType;
+
+            this.ucBusiness.IsEnabled = meetingType == MeetingTypes.Regular;
+
+            this.SetDataContexts();
+
         }
 
         #region Timer Events
@@ -186,8 +199,8 @@ namespace LodgeMinutes
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         /// <exception cref="System.NotImplementedException"></exception>
         private void saveTimer_Tick( object sender, EventArgs e )
-        {
-            // TODO: Save all inputs...
+        { 
+            MinutesViewModel.Instance.Save();
         }
 
         #endregion
@@ -294,10 +307,7 @@ namespace LodgeMinutes
                 // otherwise use the existing filename
                 else
                 {
-                    if( MinutesViewModel.Instance.Save() )
-                    {
-                        menuSave.IsEnabled = true;
-                    }
+                    MinutesViewModel.Instance.Save();
                 }
             }
             finally
@@ -317,8 +327,8 @@ namespace LodgeMinutes
             _saveFile.ShowDialog();
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

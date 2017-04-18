@@ -11,11 +11,6 @@
         <DropShadowEffect/>
     </Window.Effect>
     <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="FontWeight" Value="Bold" />
-        </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5,5,5,0" />
         </Style>
@@ -28,7 +23,7 @@
         <Style TargetType="xctk:IntegerUpDown">
             <Setter Property="Margin" Value="5,5,5,0"  />
             <Setter Property="Maximum" Value="1000" />
-            <Setter Property="Minimum" Value="1"  />
+            <Setter Property="Minimum" Value="1" />
         </Style>
     </Window.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Disabled">
@@ -54,37 +49,37 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" >Lodge Full Name</Label>
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelCenterBold}" >Lodge Full Name</Label>
             <TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" Text="{Binding LodgeName, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0">Lodge Abreviated Name</Label>
+            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Lodge Abreviated Name</Label>
             <TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding LodgeAbreviatedName, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="2" Grid.Column="0">Total Meeting Current Count</Label>
+            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Total Meeting Current Count</Label>
             <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding TotalMeetingCurrentCount, Mode=TwoWay}" />
 
-            <Label Grid.Row="3" Grid.Column="0">Regular Meeting Current Count</Label>
+            <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Regular Meeting Current Count</Label>
             <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Value="{Binding RegularMeetingCurrentCount, Mode=TwoWay}" />
 
-            <Label Grid.Row="4" Grid.Column="0">Logo/Seal</Label>
+            <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Logo/Seal</Label>
             <Image Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" />
 
-            <Label Grid.Row="5" Grid.Column="0">Worshipful Master</Label>
+            <Label Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Worshipful Master</Label>
             <TextBox Grid.Row="5" Grid.Column="1" MaxLength="50" Text="{Binding WorshipfulMaster, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="6" Grid.Column="0">Senior Warden</Label>
+            <Label Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Senior Warden</Label>
             <TextBox Grid.Row="6" Grid.Column="1" MaxLength="50" Text="{Binding SeniorWarden, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="7" Grid.Column="0">Junior Warden</Label>
+            <Label Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Junior Warden</Label>
             <TextBox Grid.Row="7" Grid.Column="1" MaxLength="50" Text="{Binding JuniorWarden, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="8" Grid.Column="0">Usual Lodge Meeting Locations</Label>
+            <Label Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Usual Lodge Meeting Locations</Label>
             <TextBox Grid.Row="8" Grid.Column="1" MaxLength="50" Text="{Binding MeetingLocations, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="9" Grid.Column="0">Regular Meetings per Month</Label>
+            <Label Grid.Row="9" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Regular Meetings per Month</Label>
             <xctk:IntegerUpDown Grid.Row="9" Grid.Column="1" Value="{Binding NumberOfRegularMeetingPerMonth, Mode=TwoWay}" />
 
-            <Label Grid.Row="10" Grid.Column="0">Usual Months 'Dark'</Label>
+            <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Usual Months 'Dark'</Label>
             <xctk:CheckComboBox Grid.Row="10" Grid.Column="1"  x:Name="_combo">
                 <ComboBoxItem>Janurary</ComboBoxItem>
                 <ComboBoxItem>Febuary</ComboBoxItem>
@@ -100,13 +95,13 @@
                 <ComboBoxItem>December</ComboBoxItem>
             </xctk:CheckComboBox>
 
-            <Label Grid.Row="11" Grid.Column="0">12/24 Hour Time</Label>
+            <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource LabelCenterBold}">12/24 Hour Time</Label>
             <ComboBox Grid.Row="11" Grid.Column="1">
                 <ComboBoxItem>12 Hour</ComboBoxItem>
                 <ComboBoxItem>24 Hour</ComboBoxItem>
             </ComboBox>
 
-            <Label Grid.Row="12" Grid.Column="0">Officer Installation Month</Label>
+            <Label Grid.Row="12" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Officer Installation Month</Label>
             <ComboBox Grid.Row="12" Grid.Column="1" SelectedIndex="{Binding OfficerInstallationMonth, Mode=TwoWay}">
                 <ComboBoxItem>Janurary</ComboBoxItem>
                 <ComboBoxItem>Febuary</ComboBoxItem>
@@ -122,7 +117,7 @@
                 <ComboBoxItem>December</ComboBoxItem>
             </ComboBox>
 
-            <Label Grid.Row="13" Grid.Column="0" >Remember Minute Dates</Label>
+            <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource LabelCenterBold}" >Remember Minute Dates</Label>
             <CheckBox Grid.Row="13" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding RememberMinuteDates, Mode=TwoWay}" />
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" Grid.Row="14" Grid.Column="1">

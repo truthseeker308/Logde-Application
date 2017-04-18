@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Models
 {
-    public class Bill : INotifyPropertyChanged, IEditableObject
+    public class Bill : ModelBase
     {
         #region Fields
 
@@ -17,22 +17,15 @@ namespace LodgeMinutesMiddleWare.Models
 
         private double _amount;
 
-        private string _service;
+        private string _purpose;
 
         private string _organization;
 
         private bool _approved;
 
-        private Bill _parent;
-        private Bill _current;
-        private Bill _backup;
-
-        private bool _inTxn = false;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         #endregion
 
+        #region Properties
 
         public string ID { get { return _id; } }
 
@@ -51,15 +44,15 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
-        [Required( ErrorMessage = "Service is required.", AllowEmptyStrings =false )]
-        public string Service
+        [Required( ErrorMessage = "Purpose is required.", AllowEmptyStrings = false )]
+        public string Purpose
         {
-            get { return _service; }
+            get { return _purpose; }
             set
             {
-                if( _service != value )
+                if( _purpose != value )
                 {
-                    _service = value;
+                    _purpose = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -93,42 +86,15 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        #endregion
+
+        /// <summary>
+        /// Creates a new instance of the <cref>Bill</cref>  class.
+        /// </summary>
         public Bill()
         {
-
+            _id = Guid.NewGuid().ToString();
         }
 
-        private void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
-        {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
-        }
-
-        void IEditableObject.BeginEdit()
-        {
-            if( !_inTxn )
-            {
-                _backup = _current;
-                _inTxn = true;
-            }
-        }
-
-        void IEditableObject.EndEdit()
-        {
-            if( _inTxn )
-            {
-                _backup = new Bill();
-                _inTxn = false;
-            }
-        }
-
-        void IEditableObject.CancelEdit()
-        {
-            if( _inTxn )
-            {
-                _current = _backup;
-                _inTxn = false;
-            }
-
-        }
     }
 }

@@ -48,20 +48,20 @@ namespace LodgeMinutes.UserControls
 
                 if( MinutesViewModel.Instance.Save() )
                 {
-                    buttonCompleteOpening.IsEnabled = false;
-                    buttonSetTime.IsEnabled = false;
+                    //buttonCompleteOpening.IsEnabled = false;
+                    //buttonSetTime.IsEnabled = false;
                     MessageBox.Show( "Lodge opened.","Success");
                 }
                 else
                 {
-                    buttonCompleteOpening.IsEnabled = true;
-                    buttonSetTime.IsEnabled = true;
+                    //buttonCompleteOpening.IsEnabled = true;
+                    //buttonSetTime.IsEnabled = true;
                     MessageBox.Show( "Error opening lodge.", "Error" );
                 }
             }
             catch(Exception ex)
             {
-                buttonCompleteOpening.IsEnabled = false;
+                //buttonCompleteOpening.IsEnabled = false;
                 File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
                 MessageBox.Show( ex.ToString(), "Error opening lodge.", MessageBoxButton.OK, MessageBoxImage.Error );
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LodgeMinutesMiddleWare.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Notes : UserControl
     {
+        public Notes CurrentNotes {  get { return this; } }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Notes"/> class.
         /// </summary>
@@ -35,10 +38,7 @@ namespace LodgeMinutes.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Button_Click( object sender, RoutedEventArgs e )
         {
-            // TODO: add a timestamp to the minutes???
-
-
-
+            MinutesViewModel.Instance.Notes = MinutesViewModel.Instance.Notes.Insert( 0, String.Format( "{0}{1}{2}", DateTime.Now.ToString( "MM/dd/yyyy hh:mm:ss tt" ), Environment.NewLine, Environment.NewLine ) );
         }
     }
 }
