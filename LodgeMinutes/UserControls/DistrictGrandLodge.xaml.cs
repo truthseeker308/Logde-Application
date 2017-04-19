@@ -1,7 +1,9 @@
 ﻿using LodgeMinutesMiddleWare.Enums;
 using LodgeMinutesMiddleWare.Models;
+using LodgeMinutesMiddleWare.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,13 +24,37 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class DistrictGrandLodge : UserControl
     {
+        #region Fields
+
         private string _district;
         private string _visitorName;
         private string _chairpersonName;
 
+        private ObservableCollection<VisitorModel> _visitors;
+
         private VisitTypes _visitType;
 
         private VisitorTypes _visitorType;
+
+        private StringBuilder _sb = new StringBuilder();
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the visitors.
+        /// </summary>
+        /// <value>
+        /// The visitors.
+        /// </value>
+        public ObservableCollection<VisitorModel> Visitors
+        {
+            get { return _visitors; }
+            set { _visitors = value; }
+        }
+
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DistrictGrandLodge"/> class.
@@ -37,9 +63,12 @@ namespace LodgeMinutes.UserControls
         {
             InitializeComponent();
 
+            _visitors = new ObservableCollection<VisitorModel>();
+
             this.comboVisitorType.SelectedIndex = 0;
 
-            
+            _sb.AppendFormat("Visitors List{0}______________________________________________{0}{0}", Environment.NewLine);
+
         }
 
         /// <summary>
@@ -102,13 +131,17 @@ namespace LodgeMinutes.UserControls
                 // if we passed our validation we need to add it to our list
                 if( _isValid )
                 {
+                    // clear the textboxes
                     this.textboxDDGM.Text = this.textboxName.Text = this.textboxTitle.Text = String.Empty;
 
-                    VisitorModel newVisitor = new VisitorModel( _visitorName, _district, _chairpersonName, _visitorType, _visitType );
+                    // create a new visitor model
+                    VisitorModel newVisitor = new VisitorModel(_visitorName, _district, _chairpersonName, _visitorType, _visitType);
 
-                    MinutesViewModel.Instance.Visitors.Add( newVisitor );
+                    // add it to out notes
+                    _sb.AppendFormat("{0}{1}", newVisitor.ToString(), Environment.NewLine);
 
-                    MinutesViewModel.Instance.VisitorsCount = MinutesViewModel.Instance.Visitors.Count();
+                    // save changes
+                    this.Visitors.Add(newVisitor);
 
                     MinutesViewModel.Instance.Save();
 

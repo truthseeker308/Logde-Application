@@ -1,5 +1,6 @@
 ﻿using LodgeMinutesMiddleWare.Views;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LodgeMinutes.Forms
@@ -23,6 +24,9 @@ namespace LodgeMinutes.Forms
             // get our settings and bind them to the form
             this.DataContext = SettingsViewModel.Instance;
 
+            // set the time combo since the setting is a boolean we can't bind
+            this.cbTimeFormat.SelectedIndex = SettingsViewModel.Instance.IsTwelveHourFormat ? 0 : 1;
+            
         }
 
         /// <summary>
@@ -54,6 +58,19 @@ namespace LodgeMinutes.Forms
             finally
             {
                 Mouse.OverrideCursor = null;
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (sender != null)
+            {
+                var item = sender as ComboBox;
+
+                if (item != null)
+                {
+                    SettingsViewModel.Instance.IsTwelveHourFormat = item.SelectedIndex == 0;
+                }
             }
         }
     }

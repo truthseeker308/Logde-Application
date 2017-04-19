@@ -59,6 +59,8 @@
     <Compile Include="Enums\MeetingTypes.cs" />
     <Compile Include="Enums\VisitorTypes.cs" />
     <Compile Include="Enums\VisitTypes.cs" />
+    <Compile Include="Helpers\FormattingHelper.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\ModelBase.cs" />

@@ -13,15 +13,7 @@
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect> Timestamp
-            </Button>
-            <!--<syncfusion:RichTextRibbon Margin="0,10,0,0" >
-                <syncfusion:RichTextRibbon.RichTextEdit>
-                    <syncfusion:RichTextBoxAdv/>
-                </syncfusion:RichTextRibbon.RichTextEdit>
-            </syncfusion:RichTextRibbon>-->
-
-            <!--<syncfusion:RichTextBoxAdv x:Name="richtextNotes" HTMLText="{Binding Notes, Mode=TwoWay}" />-->
-            
+            </Button>           
             <TextBox Margin="0,10,0,0"
               Name="textBoxMinutes"
               TextWrapping="Wrap"

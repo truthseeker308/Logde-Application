@@ -12,12 +12,12 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical"  Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Date</Label>
-                        <DatePicker Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedDate="{Binding MeetingDate, Mode=TwoWay}"  />
+                        <DatePicker Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Name="dtDate"  />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Meeting Type</Label>
-                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedIndex="{Binding MeetingType, Mode=TwoWay}">
+                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ddlMeetingYType" SelectedIndex="0" >
                             <ComboBoxItem>Regular</ComboBoxItem>
                             <ComboBoxItem>Special</ComboBoxItem>
                         </ComboBox>
@@ -25,9 +25,9 @@
 
                     <StackPanel Orientation="Vertical" Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Location</Label>
-                        <ComboBox Name="comboboxLocations" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" ItemsSource="{Binding Locations}" SelectionChanged="comboboxLocations_SelectionChanged">
+                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ddlLocations"  ItemsSource="{Binding Locations}">
                         </ComboBox>
-                        <TextBox Text="{Binding Location, Mode=TwoWay}" ToolTip="Add a new location if desired" Width="200" />
+                        <TextBox Name="tbLocation" ToolTip="Add a new location if desired" Width="200" />
                     </StackPanel> 
 
                 </StackPanel>
@@ -36,7 +36,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical"  Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" >Opening Degree</Label>
-                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedIndex="{Binding OpeningDegree, Mode=TwoWay}">
+                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ddlDegree" SelectedIndex="0" >
                             <ComboBoxItem>Entered Apprentice</ComboBoxItem>
                             <ComboBoxItem>Fellowcraft</ComboBoxItem>
                             <ComboBoxItem>Master Mason</ComboBoxItem>
@@ -45,7 +45,7 @@
 
                     <StackPanel Orientation="Vertical" Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Opening Form</Label>
-                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedIndex="{Binding OpeningForm, Mode=TwoWay}">
+                        <ComboBox Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Name="ddlOpeningForm" SelectedIndex="0" >
                             <ComboBoxItem>In Due Form</ComboBoxItem>
                             <ComboBoxItem>In Form</ComboBoxItem>
                             <ComboBoxItem>In Ample Form</ComboBoxItem>
@@ -58,7 +58,7 @@
                                 <DropShadowEffect/>
                             </Button.Effect>Set Opening Time
                         </Button>
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding MeetingDate, Mode=TwoWay}" />
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Name="lblMeetingTime"  />
                     </StackPanel>
 
                 </StackPanel>
@@ -66,18 +66,18 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical"  Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">By</Label>
-                        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Text="{Binding WorshipfulMaster, Mode=TwoWay}" />
-                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding ByDispensation, Mode=TwoWay}">By Dispensation ?</CheckBox>
+                        <TextBox Name="tbWM" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Text="{Binding WorshipfulMaster, Mode=OneWay}" />
+                        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" Name="cbByDispensation" >By Dispensation ?</CheckBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Members Attending</Label>
-                        <xctk:IntegerUpDown HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Value="{Binding MembersCount, Mode=TwoWay}" />
+                        <xctk:IntegerUpDown HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" x:Name="iudMemberCount" Value="0" Maximum="100" Minimum="0" />
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="5,10,0,0">
                         <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Visitors Attending</Label>
-                        <xctk:IntegerUpDown HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Value="{Binding VisitorsCount, Mode=TwoWay}" />
+                        <xctk:IntegerUpDown HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Name="iudVisitorCount" Value="0" Minimum="0" Maximum="100" />
                     </StackPanel>
 
                 </StackPanel>

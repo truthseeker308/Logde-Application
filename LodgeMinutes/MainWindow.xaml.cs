@@ -20,6 +20,7 @@ using Microsoft.Win32;
 using System.IO;
 using LodgeMinutesMiddleWare.Models;
 using LodgeMinutesMiddleWare.Enums;
+using LodgeMinutesMiddleWare.Helpers;
 
 namespace LodgeMinutes
 {
@@ -31,10 +32,6 @@ namespace LodgeMinutes
         #region Fields
 
         private readonly string HEADER = "Secretary Application - ";
-
-        private SaveFileDialog _saveFile = new SaveFileDialog();
-
-        private OpenFileDialog _openFile = new OpenFileDialog();
 
         private AboutBox _aboutBox;
 
@@ -50,10 +47,8 @@ namespace LodgeMinutes
         {
             InitializeComponent();
 
-            // get our settings from the app.config
-            
             // initialize some member fields/controls
-            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm:ss tt" );
+            this.textboxTime.Text = FormattingHelper.GetShortTimeWithAmPm();
             
             _aboutBox = new AboutBox();
 
@@ -70,22 +65,7 @@ namespace LodgeMinutes
 
             this.Title = HEADER + SettingsViewModel.Instance.LodgeName;
 
-            _saveFile.AddExtension = true;
-            _saveFile.CreatePrompt = true;
-            _saveFile.CheckPathExists = true;
-            _saveFile.DefaultExt = "lodge";
-            _saveFile.Filter = "Lodge files (*.lodge)|*.lodge|All files (*.*)|*.*";
-            _saveFile.InitialDirectory = new DirectoryInfo( "Saved" ).ToString();
-            _saveFile.ValidateNames = true;
-            _saveFile.FileOk += saveFile_FileOk;
-
-            _openFile.Filter = "Lodge files (*.lodge)|*.lodge|All files (*.*)|*.*";
-            _openFile.RestoreDirectory = true;
-            _openFile.CheckFileExists = true;
-            _openFile.CheckPathExists = true;
-            _openFile.DefaultExt = "lodge";
-            _openFile.Multiselect = false;
-            _openFile.FileOk += openFile_FileOk;
+            this.CreateDirectories();
 
             this.LoadMinuteValues();
 
@@ -95,14 +75,50 @@ namespace LodgeMinutes
 
         }
 
-        private void ButtonCommitOpening_Click( object sender, RoutedEventArgs e )
+        /// <summary>
+        /// Creates the directories.
+        /// </summary>
+        private void CreateDirectories()
         {
-            this.LoadMinuteValues();
+            try
+            {
+                var minutesDirectory = String.Format( "{0}\\{1}", Environment.CurrentDirectory, SettingsViewModel.Instance.SaveMinutesDirectory );
+
+                // if our minutes directory doesn't exist we need to create it
+                if( !Directory.Exists( minutesDirectory ) )
+                {
+                    Directory.CreateDirectory( minutesDirectory );
+                }
+            }
+            catch( Exception ex )
+            {
+                LogHelper.LogError( ex );
+            }
+
+            try
+            {
+                var wordDirectory = String.Format( "{0}\\{1}", Environment.CurrentDirectory, SettingsViewModel.Instance.SaveWordDirectory );
+
+                // if our word exports directory doesn't exist we need to create it
+                if( !Directory.Exists( wordDirectory ) )
+                {
+                    Directory.CreateDirectory( wordDirectory );
+                }
+            }
+            catch( Exception ex )
+            {
+                LogHelper.LogError( ex );
+            }
         }
 
+        /// <summary>
+        /// Handles the Saved event of the Instance control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Instance_Saved( object sender, EventArgs e )
         {
-            this.textboxFilename.Text = MinutesViewModel.Instance.FileName;
+            this.textboxFilename.Text = SettingsViewModel.Instance.LastFilename;
         }
 
         /// <summary>
@@ -111,73 +127,16 @@ namespace LodgeMinutes
         private void SetDataContexts()
         {
             this.DataContext = MinutesViewModel.Instance;
-            this.ucLodge.Opening.DataContext = MinutesViewModel.Instance;
-            this.ucLodge.Closing.DataContext = MinutesViewModel.Instance;
-            this.ucVisitors.DataContext = MinutesViewModel.Instance.Visitors;
-            this.ucExtras.Monies.DataContext = MinutesViewModel.Instance;
+            this.ucLodge.Opening.DataContext = SettingsViewModel.Instance;
             this.ucNotes.CurrentNotes.DataContext = MinutesViewModel.Instance;
-            this.ucBusiness.Necrologies.DataContext = MinutesViewModel.Instance;
-
-            // TODO: set all our user controls data contexts
-
         }
 
-        private void openFile_FileOk( object sender, System.ComponentModel.CancelEventArgs e )
-        {
-            try
-            {
-                if( !e.Cancel )
-                {
-                    Mouse.OverrideCursor = Cursors.Wait;
-
-                    MinutesViewModel.Instance.FileName = ( (OpenFileDialog)sender ).FileName;
-
-                    MinutesViewModel.Instance.Load();
-
-                    LoadMinuteValues();
-                                        
-                }
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-
-        private void saveFile_FileOk( object sender, System.ComponentModel.CancelEventArgs e )
-        {
-            try
-            {
-                if( !e.Cancel )
-                {
-                    Mouse.OverrideCursor = Cursors.Wait;
-                    
-                    MinutesViewModel.Instance.FileName = ( (SaveFileDialog)sender ).FileName;
-
-                    if( MinutesViewModel.Instance.Save() )
-                    {
-                        MessageBox.Show( "Minutes saved.", "Success" );
-                    }
-                    else
-                    {
-                        MessageBox.Show( "Error saving minutes.", "Error" );
-                    }
-                }
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-
+        /// <summary>
+        /// Loads the minute values.
+        /// </summary>
         private void LoadMinuteValues()
         {
-            var meetingType = (MeetingTypes)MinutesViewModel.Instance.MeetingType;
-
-            this.ucBusiness.IsEnabled = meetingType == MeetingTypes.Regular;
-
             this.SetDataContexts();
-
         }
 
         #region Timer Events
@@ -189,7 +148,7 @@ namespace LodgeMinutes
         /// <param name="e"></param>
         private void uiTimer_Tick( object sender, EventArgs e )
         {
-            this.textboxTime.Text = DateTime.Now.ToString( "hh:mm:ss tt" );
+            this.textboxTime.Text = FormattingHelper.GetDateAndTime();
         }
 
         /// <summary>
@@ -256,82 +215,24 @@ namespace LodgeMinutes
         }
 
         /// <summary>
-        /// Handles the Click event of the menuNew control.
+        /// Handles the Click event of the menuExport control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.></param>
-        private void menuNew_Click( object sender, RoutedEventArgs e )
-        {
-            _saveTimer.Stop();
-
-            if( MessageBox.Show("Do you want to create new minutes?nAll un-saved changes will be lost.", "New Minutes?",MessageBoxButton.YesNoCancel,MessageBoxImage.Question) == MessageBoxResult.Yes )
-            {
-                try
-                {
-                    Mouse.OverrideCursor = Cursors.Wait;
-
-                    // create a new minutes set and re-bind it
-                    MinutesViewModel.Instance.Clear();
-                }
-                finally
-                {
-                    Mouse.OverrideCursor = null;
-                }
-            }
-
-            _saveTimer.Start();
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the menuOpen control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.></param>
-        private void menuOpen_Click( object sender, RoutedEventArgs e )
-        {
-            _openFile.ShowDialog();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the menuSave control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.></param>
-        private void menuSave_Click( object sender, RoutedEventArgs e )
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void menuExport_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                // get a new filename if we don't have one
-                if( String.IsNullOrWhiteSpace( MinutesViewModel.Instance.FileName ) )
-                {
-                    _saveFile.ShowDialog();
-                }
-                // otherwise use the existing filename
-                else
-                {
-                    MinutesViewModel.Instance.Save();
-                }
+                var reports = new Reports();
+                reports.ShowDialog();
             }
             finally
             {
                 Mouse.OverrideCursor = null;
             }
-
-            // save the data if we have an existing filename
-            MinutesViewModel.Instance.Save();
-
-            // otherwise ask for one
-
         }
-
-        private void menuSaveAs_Click(object sender, RoutedEventArgs e )
-        {
-            _saveFile.ShowDialog();
-        }
-
 
         #endregion
 
@@ -344,20 +245,24 @@ namespace LodgeMinutes
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonReopen_Click( object sender, RoutedEventArgs e )
         {
+            _saveTimer.Stop();
+
             if( !String.IsNullOrWhiteSpace( SettingsViewModel.Instance.LastFilename ) )
             {
                 var result = MessageBox.Show( "Open previously saved minutes?\nThis will cause any unsaved changes to be lost.", "Open Minutes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question );
 
                 if( result == MessageBoxResult.Yes )
                 {
-                    MinutesViewModel.Instance.Load( SettingsViewModel.Instance.LastFilename );
-                    this.LoadMinuteValues();
+                    this.LoadLastMinuteValues();
                 }
             }
             else
             {
                 MessageBox.Show( "No previous minutes could be found.", "No Minutes" );
             }
+
+            _saveTimer.Start();
+
         }
 
         /// <summary>
@@ -367,7 +272,17 @@ namespace LodgeMinutes
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonReoutput_Click( object sender, RoutedEventArgs e )
         {
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
 
+                // create a new minutes set and re-bind it
+                MinutesViewModel.Instance.Export();
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         /// <summary>
@@ -379,14 +294,14 @@ namespace LodgeMinutes
         {
             _saveTimer.Stop();
 
-            if( MessageBox.Show( "Do you want to create new minutes?nAll un-saved changes will be lost.", "New Minutes?", MessageBoxButton.YesNoCancel, MessageBoxImage.Question ) == MessageBoxResult.Yes )
+            if( MessageBox.Show( "Do you want to create new minutes?\n\nAll un-saved changes will be lost.\n\nAnd any previously created minutes for this day will be lost.", "New Minutes?", MessageBoxButton.YesNoCancel, MessageBoxImage.Question ) == MessageBoxResult.Yes )
             {
                 try
                 {
                     Mouse.OverrideCursor = Cursors.Wait;
 
                     // create a new minutes set and re-bind it
-                    MinutesViewModel.Instance.Clear();
+                    MinutesViewModel.Instance.Notes = String.Empty;
                 }
                 finally
                 {
@@ -398,12 +313,49 @@ namespace LodgeMinutes
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the ButtonCommitOpening control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void ButtonCommitOpening_Click(object sender, RoutedEventArgs e)
+        {
+            this.LoadMinuteValues();
+        }
+
         #endregion
 
-        private void menuExport_Click(object sender, RoutedEventArgs e)
+        #region Private Methods
+
+        /// <summary>
+        /// Loads the last minute values.
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void LoadLastMinuteValues()
         {
-            new Reports().ShowDialog();
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                // clear the minutes and re-load them from the last used file
+                MinutesViewModel.Instance.Notes = String.Empty;
+
+                MinutesViewModel.Instance.Notes = File.ReadAllText( SettingsViewModel.Instance.LastFilename );
+
+            }
+            catch( Exception ex )
+            {
+                LogHelper.LogError( ex );
+                MessageBox.Show( "Error loading last minutes.", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
+
+        #endregion
+
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using LodgeMinutesMiddleWare.Models;
+﻿using LodgeMinutesMiddleWare.Helpers;
+using LodgeMinutesMiddleWare.Models;
+using LodgeMinutesMiddleWare.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +40,17 @@ namespace LodgeMinutes.UserControls
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Button_Click( object sender, RoutedEventArgs e )
         {
-            MinutesViewModel.Instance.Notes = MinutesViewModel.Instance.Notes.Insert( 0, String.Format( "{0}{1}{2}", DateTime.Now.ToString( "MM/dd/yyyy hh:mm:ss tt" ), Environment.NewLine, Environment.NewLine ) );
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                MinutesViewModel.Instance.Notes = MinutesViewModel.Instance.Notes.Insert( 0, String.Format( "{0}{1}{0}", Environment.NewLine, FormattingHelper.GetShortTimeWithAmPm() ) );
+                MinutesViewModel.Instance.Save();
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
     }
 }

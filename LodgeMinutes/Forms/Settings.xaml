@@ -80,7 +80,7 @@
             <xctk:IntegerUpDown Grid.Row="9" Grid.Column="1" Value="{Binding NumberOfRegularMeetingPerMonth, Mode=TwoWay}" />
 
             <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Usual Months 'Dark'</Label>
-            <xctk:CheckComboBox Grid.Row="10" Grid.Column="1"  x:Name="_combo">
+            <xctk:CheckComboBox Grid.Row="10" Grid.Column="1"  x:Name="ccbDarkMonths">
                 <ComboBoxItem>Janurary</ComboBoxItem>
                 <ComboBoxItem>Febuary</ComboBoxItem>
                 <ComboBoxItem>March</ComboBoxItem>
@@ -96,7 +96,7 @@
             </xctk:CheckComboBox>
 
             <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource LabelCenterBold}">12/24 Hour Time</Label>
-            <ComboBox Grid.Row="11" Grid.Column="1">
+            <ComboBox Grid.Row="11" Grid.Column="1" SelectionChanged="ComboBox_SelectionChanged" Name="cbTimeFormat">
                 <ComboBoxItem>12 Hour</ComboBoxItem>
                 <ComboBoxItem>24 Hour</ComboBoxItem>
             </ComboBox>

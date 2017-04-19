@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:LodgeMinutes.Forms"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="LodgeMinutes.Forms.Reports"
         mc:Ignorable="d"
-        Title="Reports" Height="600" Width="800" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Icon="/;component/LodgeMinutes.ico" >
+        Title="Reports" Height="600" Width="800" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Icon="/;component/LodgeMinutes.ico" MinHeight="600" MinWidth="797" >
     <Grid>
-        <syncfusion:ReportViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="reportViewer" />
+        <syncfusion:ReportViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="reportViewer" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ShowPrintButton="True" ShowRefreshButton="True" ProcessingMode="Local" ReportPath="Resources\Minutes.rdlc" />
     </Grid>
 </Window>
