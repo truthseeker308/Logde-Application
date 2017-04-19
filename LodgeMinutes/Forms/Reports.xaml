@@ -1,0 +1,13 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LodgeMinutes.Forms"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="LodgeMinutes.Forms.Reports"
+        mc:Ignorable="d"
+        Title="Reports" Height="600" Width="800" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Icon="/;component/LodgeMinutes.ico" >
+    <Grid>
+        <syncfusion:ReportViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="reportViewer" />
+    </Grid>
+</Window>

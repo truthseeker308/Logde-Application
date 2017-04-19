@@ -47,7 +47,7 @@
                 <ComboBoxItem>In Ample Form</ComboBoxItem>
             </ComboBox>
             <TextBlock/>
-            <Button Name="buttonCloseMeeting">Close Meeting</Button>
+            <Button Name="buttonCloseMeeting" Click="buttonCloseMeeting_Click">Close Meeting</Button>
             <TextBlock/>
             <Button IsEnabled="False" Name="buttonOutputMinutes">Output Minutes</Button>
         </StackPanel>

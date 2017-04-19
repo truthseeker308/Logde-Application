@@ -28,7 +28,7 @@ namespace LodgeMinutesMiddleWare.Models
 
         private ObservableCollection<Candidate> _candidates;
 
-        private string _location;
+        private string _location = String.Empty;
 
         private DateTime _meetingDate = DateTime.Now;
 
@@ -36,11 +36,11 @@ namespace LodgeMinutesMiddleWare.Models
 
         private int _visitorsCount = 0;
 
-        private string _wm;
+        private string _wm = String.Empty;
 
-        private string _sw;
+        private string _sw = String.Empty;
 
-        private string _jw;
+        private string _jw = String.Empty;
 
         private bool _byDispenstation = false;
 
@@ -56,7 +56,11 @@ namespace LodgeMinutesMiddleWare.Models
 
         private int _specialMeetingCount;
 
-        private string _notes;
+        private string _notes = String.Empty;
+
+        private bool _isOpen = false;
+
+        private string _filename = String.Empty;
 
         [NonSerialized]
         private static object s_lock = new object();
@@ -114,6 +118,11 @@ namespace LodgeMinutesMiddleWare.Models
         public ObservableCollection<Money> Monies
         {
             get { return _monies; }
+        }
+
+        public ObservableCollection<Candidate> Candidates
+        {
+            get { return _candidates; }
         }
 
         /// <summary>
@@ -315,7 +324,19 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
-        public string FileName { get; set; }
+        public string FileName
+        {
+            get { return _filename; }
+            set
+            {
+                if( _filename != value)
+                {
+                    _filename = value;
+                    SettingsViewModel.Instance.LastFilename = _filename;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         public string Notes
         {
@@ -339,6 +360,19 @@ namespace LodgeMinutesMiddleWare.Models
             get { return _meetingType == MeetingTypes.Regular; }
         }
 
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            set
+            {
+                if( _isOpen !=value)
+                {
+                    _isOpen = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        
         #endregion
 
         /// <summary>
@@ -348,9 +382,43 @@ namespace LodgeMinutesMiddleWare.Models
         {
             
         }
-         
+
+        public void Clear()
+        {
+            // since we're dealing with a singleton we need to do some manual clearing
+            this.Bills.Clear();
+            this.Candidates.Clear();
+            this.Visitors.Clear();
+            this.Monies.Clear();
+            this.Locations.Clear();
+
+            this.SeniorWarden = String.Empty;
+            this.WorshipfulMaster = String.Empty;
+            this.SeniorWarden = String.Empty;
+            this.Location = String.Empty;
+
+            this.FileName = String.Empty;
+            this.IsOpen = false;
+
+            this.ByDispensation = false;
+            this.ClosingDegree = (int)Degrees.EnteredApprentice;
+            this.MeetingDate = DateTime.Now;
+            this.MeetingType = (int)MeetingTypes.Regular;
+            this.MembersCount = 0;
+            this.Notes = String.Empty;
+            this.OpeningDegree = (int)Degrees.EnteredApprentice;
+            this.OpeningForm = (int)Forms.InDueForm;
+            this.RegularMeetingCount = 0;
+            this.SpecialMeetingCount = 0;
+            this.VisitorsCount = 0;
+
+            this.LoadValuesFromSettings();
+
+            
+        }
+
         /// <summary>
-        /// Prevents an instance of the MinutesModel class from being instantiated.
+        /// Prevents a default instance of the MinutesViewModel class from being instantiated.
         /// </summary>
         private MinutesViewModel()
         {
@@ -435,6 +503,11 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        public void Reset()
+        {
+            this.LoadValuesFromSettings();
+        }
+
         /// <summary>
         /// Saves this instance to the specified filename
         /// </summary>
@@ -453,10 +526,9 @@ namespace LodgeMinutesMiddleWare.Models
         /// <returns></returns>
         public bool Load( string fileName )
         {
-            // load the base values from the settings
-            Load();
-
-            return false;
+            this.FileName = fileName;
+            return Load();
+            
         }
 
         /// <summary>
@@ -477,12 +549,11 @@ namespace LodgeMinutesMiddleWare.Models
                 return true;
 
             }
-            catch( Exception )
+            catch( Exception ex )
             {
-                throw;
+                File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
+                return false;
             }
-
-            return false;
         }
         
         /// <summary>

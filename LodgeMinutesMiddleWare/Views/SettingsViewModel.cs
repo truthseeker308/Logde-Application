@@ -52,9 +52,7 @@ namespace LodgeMinutesMiddleWare.Views
 
         private string _savedWordDirectory;
 
-        private string _lastUserFilename;
-
-        private static readonly Lazy<SettingsViewModel> instance = new Lazy<SettingsViewModel>( () => new SettingsViewModel() );
+        private string _lastUsedFilename;
 
         #endregion
 
@@ -289,12 +287,12 @@ namespace LodgeMinutesMiddleWare.Views
         /// </summary>
         public string LastFilename
         {
-            get { return _lastUserFilename; }
+            get { return _lastUsedFilename; }
             set
             {
-                if( _lastUserFilename != value )
+                if( _lastUsedFilename != value )
                 {
-                    _lastUserFilename = value;
+                    _lastUsedFilename = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -371,7 +369,7 @@ namespace LodgeMinutesMiddleWare.Views
                 _savedWordDirectory = ConfigurationManager.AppSettings[Constants.SavedWordFilesDirectory];
                 _savedMinutesDirectory = ConfigurationManager.AppSettings[Constants.SavedMinutesDirectory];
 
-                _lastUserFilename = ConfigurationManager.AppSettings[Constants.LastUseFilename];
+                _lastUsedFilename = ConfigurationManager.AppSettings[Constants.LastUseFilename];
 
             }
             catch( Exception  ex)
@@ -428,7 +426,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.RememberedMinuteDates].Value = _rememberMinuteDates.ToString();
 
-                config.AppSettings.Settings[Constants.LastUseFilename].Value = _lastUserFilename.ToString();
+                config.AppSettings.Settings[Constants.LastUseFilename].Value = _lastUsedFilename;
 
                 config.Save( ConfigurationSaveMode.Full );
                 ConfigurationManager.RefreshSection( "appSettings" );

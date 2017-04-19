@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="LodgeMinutes.UserControls.Motions"
+﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  x:Class="LodgeMinutes.UserControls.Motions"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <Grid Background="#FFE5E5E5">
         <StackPanel Orientation="Vertical" Margin="0,5,0,0">
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Motions Entry</Label>
+            <Label Style="{StaticResource LabelCenterBold}">Motions Entry</Label>
             <Grid Margin="0,5,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -32,8 +32,8 @@
                 </StackPanel>
             </Grid>
             <Button Margin="0,10,0,20" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>
-            
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Motions Amendments Entry</Label>
+
+            <Label Style="{StaticResource LabelCenterBold}">Motions Amendments Entry</Label>
             <Grid Margin="0,5,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

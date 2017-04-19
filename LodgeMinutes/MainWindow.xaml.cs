@@ -262,20 +262,25 @@ namespace LodgeMinutes
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.></param>
         private void menuNew_Click( object sender, RoutedEventArgs e )
         {
+            _saveTimer.Stop();
+
             if( MessageBox.Show("Do you want to create new minutes?nAll un-saved changes will be lost.", "New Minutes?",MessageBoxButton.YesNoCancel,MessageBoxImage.Question) == MessageBoxResult.Yes )
             {
                 try
                 {
                     Mouse.OverrideCursor = Cursors.Wait;
 
-                    // TODO: create a new minutes set and re-bind it
-
+                    // create a new minutes set and re-bind it
+                    MinutesViewModel.Instance.Clear();
                 }
                 finally
                 {
                     Mouse.OverrideCursor = null;
                 }
             }
+
+            _saveTimer.Start();
+
         }
 
         /// <summary>
@@ -329,6 +334,76 @@ namespace LodgeMinutes
 
 
         #endregion
+
+        #region Button Methods
+
+        /// <summary>
+        /// Handles the Click event of the buttonReopen control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonReopen_Click( object sender, RoutedEventArgs e )
+        {
+            if( !String.IsNullOrWhiteSpace( SettingsViewModel.Instance.LastFilename ) )
+            {
+                var result = MessageBox.Show( "Open previously saved minutes?\nThis will cause any unsaved changes to be lost.", "Open Minutes", MessageBoxButton.YesNoCancel, MessageBoxImage.Question );
+
+                if( result == MessageBoxResult.Yes )
+                {
+                    MinutesViewModel.Instance.Load( SettingsViewModel.Instance.LastFilename );
+                    this.LoadMinuteValues();
+                }
+            }
+            else
+            {
+                MessageBox.Show( "No previous minutes could be found.", "No Minutes" );
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonReoutput control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonReoutput_Click( object sender, RoutedEventArgs e )
+        {
+
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonNewMeeting control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonNewMeeting_Click( object sender, RoutedEventArgs e )
+        {
+            _saveTimer.Stop();
+
+            if( MessageBox.Show( "Do you want to create new minutes?nAll un-saved changes will be lost.", "New Minutes?", MessageBoxButton.YesNoCancel, MessageBoxImage.Question ) == MessageBoxResult.Yes )
+            {
+                try
+                {
+                    Mouse.OverrideCursor = Cursors.Wait;
+
+                    // create a new minutes set and re-bind it
+                    MinutesViewModel.Instance.Clear();
+                }
+                finally
+                {
+                    Mouse.OverrideCursor = null;
+                }
+            }
+
+            _saveTimer.Start();
+
+        }
+
+        #endregion
+
+        private void menuExport_Click(object sender, RoutedEventArgs e)
+        {
+            new Reports().ShowDialog();
+        }
 
     }
 }

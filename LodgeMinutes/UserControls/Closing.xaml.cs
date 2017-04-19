@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LodgeMinutesMiddleWare.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,24 @@ namespace LodgeMinutes.UserControls
         public Closing()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonCloseMeeting Control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCloseMeeting_Click( object sender, RoutedEventArgs e )
+        {
+            // if we close the meeting we should mark it in the minute
+            MinutesViewModel.Instance.IsOpen = false;
+
+            // the save event triggers other UI things to happen
+            // in the main window
+            MinutesViewModel.Instance.Save();
+
+            
+
         }
     }
 }
