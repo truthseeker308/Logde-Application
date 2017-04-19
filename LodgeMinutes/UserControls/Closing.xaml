@@ -21,17 +21,19 @@
             <Label FontWeight="Bold">Change Degrees</Label>
             <TextBlock/>
             <TextBlock Text="From Degree"/>
-            <ComboBox Name="comboboxFromDegree">
+
+            <ComboBox Name="comboboxFromDegree" SelectionChanged="comboboxFromDegree_SelectionChanged" Width="200">
                 <ComboBoxItem>Entered Apprentice</ComboBoxItem>
                 <ComboBoxItem>Fellowcraft</ComboBoxItem>
                 <ComboBoxItem>Master Mason</ComboBoxItem>
             </ComboBox>
             <TextBlock/>
             <TextBlock Text="To Degree"/>
-            <ComboBox Name="comboboxToDegree" IsEnabled="False">
-                <ComboBoxItem>Entered Apprentice</ComboBoxItem>
-                <ComboBoxItem>Fellowcraft</ComboBoxItem>
-                <ComboBoxItem>Master Mason</ComboBoxItem>
+            <ComboBox x:Name="comboboxToDegree" IsEnabled="False" Width="200" SelectedIndex="0" SelectionChanged="comboboxToDegree_SelectionChanged">
+                <ComboBoxItem/>
+                <ComboBoxItem Content="Entered Apprentice"/>
+                <ComboBoxItem Content="Fellowcraft"/>
+                <ComboBoxItem Content="Master Mason"/>
             </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0">
@@ -41,15 +43,23 @@
             <Label FontWeight="Bold">Close Meeting / Output Minutes</Label>
             <TextBlock/>
             <TextBlock Text="Closing Form"/>
-            <ComboBox Name="comboboxClosingForm">
+            <ComboBox Name="comboboxClosingForm" SelectedIndex="0" Width="200">
                 <ComboBoxItem>In Due Form</ComboBoxItem>
                 <ComboBoxItem>In Form</ComboBoxItem>
                 <ComboBoxItem>In Ample Form</ComboBoxItem>
             </ComboBox>
             <TextBlock/>
-            <Button Name="buttonCloseMeeting" Click="buttonCloseMeeting_Click">Close Meeting</Button>
+            <Button Name="buttonCloseMeeting" Click="buttonCloseMeeting_Click" Width="100">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect> Close Meeting
+            </Button>
             <TextBlock/>
-            <Button IsEnabled="False" Name="buttonOutputMinutes">Output Minutes</Button>
+            <Button IsEnabled="False" Name="buttonOutputMinutes" Width="100" Click="buttonOutputMinutes_Click">
+                <Button.Effect>
+                    <DropShadowEffect/>
+                </Button.Effect> Output Minutes
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
