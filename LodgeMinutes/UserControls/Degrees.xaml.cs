@@ -259,53 +259,63 @@ namespace LodgeMinutes.UserControls
         /// Gets the candidate names.
         /// </summary>
         /// <returns></returns>
-        private string GetCandidateNames()
+        private Tuple<int,string> GetCandidateData()
         {
+            int count = 0;
+
             StringBuilder sb = new StringBuilder();
 
             if( !String.IsNullOrWhiteSpace( this.tb1.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb1.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb2.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb2.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb3.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb3.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb4.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb4.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb5.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb5.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb6.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb6.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb7.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb7.Text);
             }
 
             if( !String.IsNullOrWhiteSpace( this.tb8.Text ) )
             {
+                count++;
                 sb.AppendLine( this.tb8.Text);
             }
 
             sb.AppendLine();
 
-            return sb.ToString();
+            return Tuple.Create<int, string>( count, sb.ToString() );
 
         }
 
@@ -363,12 +373,12 @@ namespace LodgeMinutes.UserControls
             this.SetComboBoxEnabledStatus( false );
 
             // get our names
-            var candidates = this.GetCandidateNames();
+            var candidates = this.GetCandidateData();
 
             // write out to our notes
             StringBuilder sb = new StringBuilder();
 
-            var notes = String.Format( "{0}Degree - {1}{0}Dispensation for more than 5 candidates - {2}{0}Candidates - {0}{4}{0}First section started on - {3}{0}", Environment.NewLine, this.comboboxDegreeType.Text, this.checkboxDispensation.IsChecked, FormattingHelper.GetDateAndTime(), candidates );
+            var notes = String.Format( "{0}Degree - {1}{0}Dispensation for more than 5 candidates - {2}{0}Candidates - {0}{4}{0}First section started on - {3}{0}", Environment.NewLine, this.comboboxDegreeType.Text, this.checkboxDispensation.IsChecked, FormattingHelper.GetDateAndTime(), candidates.Item2 );
 
             MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, notes );
 
@@ -395,12 +405,6 @@ namespace LodgeMinutes.UserControls
 
             this.SetComboBoxEnabledStatus( false );
 
-            // get our names
-            var candidates = this.GetCandidateNames();
-
-            // write out to our notes
-            StringBuilder sb = new StringBuilder();
-
             var notes = String.Format( "{0}First section ended on - {1}{0}", Environment.NewLine, FormattingHelper.GetDateAndTime() );
 
             MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, notes );
@@ -420,12 +424,6 @@ namespace LodgeMinutes.UserControls
             this.buttonSecondEnded.IsEnabled = true;
             this.buttonThirdBegun.IsEnabled = false;
             this.buttonThirdEnded.IsEnabled = false;
-
-            // get our names
-            var candidates = this.GetCandidateNames();
-
-            // write out to our notes
-            StringBuilder sb = new StringBuilder();
 
             var notes = String.Format( "{0}Second section started on - {1}{0}", Environment.NewLine, FormattingHelper.GetDateAndTime() );
 
@@ -447,12 +445,6 @@ namespace LodgeMinutes.UserControls
             this.buttonThirdBegun.IsEnabled = true;
             this.buttonThirdEnded.IsEnabled = false;
 
-            // get our names
-            var candidates = this.GetCandidateNames();
-
-            // write out to our notes
-            StringBuilder sb = new StringBuilder();
-
             var notes = String.Format( "{0}Second section ended on - {1}{0}", Environment.NewLine, FormattingHelper.GetDateAndTime() );
 
             MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, notes );
@@ -472,12 +464,6 @@ namespace LodgeMinutes.UserControls
             this.buttonSecondEnded.IsEnabled = false;
             this.buttonThirdBegun.IsEnabled = false;
             this.buttonThirdEnded.IsEnabled = true;
-
-            // get our names
-            var candidates = this.GetCandidateNames();
-
-            // write out to our notes
-            StringBuilder sb = new StringBuilder();
 
             var notes = String.Format( "{0}Third section started on - {1}{0}", Environment.NewLine, FormattingHelper.GetDateAndTime() );
 
@@ -504,12 +490,6 @@ namespace LodgeMinutes.UserControls
             this.SetCheckBoxEnabledStatus( true );
 
             this.SetComboBoxEnabledStatus( true );
-
-            // get our names
-            var candidates = this.GetCandidateNames();
-
-            // write out to our notes
-            StringBuilder sb = new StringBuilder();
 
             var notes = String.Format( "{0}Third section ended on - {1}{0}", Environment.NewLine, FormattingHelper.GetDateAndTime() );
 
