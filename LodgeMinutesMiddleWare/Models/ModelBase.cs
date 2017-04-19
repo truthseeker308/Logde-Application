@@ -13,7 +13,7 @@ namespace LodgeMinutesMiddleWare.Models
     {
         #region Fields
 
-        private ModelBase _parent;
+        //private ModelBase _parent;
         private ModelBase _current;
         private ModelBase _backup;
 
@@ -27,7 +27,12 @@ namespace LodgeMinutesMiddleWare.Models
 
         protected void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
         {
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+            var myEvent = PropertyChanged;
+
+            if (myEvent != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         void IEditableObject.BeginEdit()

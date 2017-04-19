@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LodgeMinutesMiddleWare.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -21,7 +22,7 @@ namespace LodgeMinutesMiddleWare.Views
         private string _lodgeAbreviatedName;
 
         private int _specialMeetingCount;
-
+        
         private int _regularMeetingCount;
 
         private Bitmap _seal;
@@ -33,6 +34,8 @@ namespace LodgeMinutesMiddleWare.Views
         private string _juniorWarden;
 
         private string _meetingLocations;
+
+        private List<string> _locations;
 
         private int _regularMeetingsPerMonth;
 
@@ -203,6 +206,25 @@ namespace LodgeMinutesMiddleWare.Views
         }
 
         /// <summary>
+        /// Gets or sets the locations.
+        /// </summary>
+        /// <value>
+        /// The locations.
+        /// </value>
+        public List<string> Locations
+        {
+            get { return _locations; }
+            set
+            {
+                if (_locations != value)
+                {
+                    _locations = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the Number of Regular Meetings Per Month
         /// </summary>
         public int NumberOfRegularMeetingPerMonth
@@ -297,7 +319,29 @@ namespace LodgeMinutesMiddleWare.Views
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets the save word directory.
+        /// </summary>
+        /// <value>
+        /// The save word directory.
+        /// </value>
+        public string SaveWordDirectory
+        {
+            get { return _savedWordDirectory; }
+        }
+
+        /// <summary>
+        /// Gets the save minutes directory.
+        /// </summary>
+        /// <value>
+        /// The save minutes directory.
+        /// </value>
+        public string SaveMinutesDirectory
+        {
+            get { return _savedMinutesDirectory; }
+        }
+
         /// <summary>
         /// Returns the single instance of the SettingsViewModel
         /// </summary>
@@ -327,6 +371,8 @@ namespace LodgeMinutesMiddleWare.Views
             // make sure we have our lists created to avoid NULL errors
             _monthsDark = new List<string>();
 
+            _locations = new List<string>();
+
             this.Load();
 
         }
@@ -355,6 +401,8 @@ namespace LodgeMinutesMiddleWare.Views
 
                 _meetingLocations = ConfigurationManager.AppSettings[Constants.UsualLodgeMeetingLocations];
 
+                _locations.AddRange(_meetingLocations.Split(',').ToList());
+
                 _regularMeetingsPerMonth = int.Parse( ConfigurationManager.AppSettings[Constants.NumberOfRegularMeetingsPerYear] );
 
                 // TODO: we need to do some parsing of dates here
@@ -374,7 +422,7 @@ namespace LodgeMinutesMiddleWare.Views
             }
             catch( Exception  ex)
             {
-                File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
+                LogHelper.LogError( ex );
                 throw;
             }
         }
@@ -428,14 +476,14 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.LastUseFilename].Value = _lastUsedFilename;
 
-                config.Save( ConfigurationSaveMode.Full );
+                config.Save( ConfigurationSaveMode.Modified );
                 ConfigurationManager.RefreshSection( "appSettings" );
 
                 return true;
             }
             catch( Exception ex )
             {
-                File.AppendAllText( "error.log", Environment.NewLine + Environment.NewLine + DateTime.Now + Environment.NewLine + ex.ToString() );
+                LogHelper.LogError( ex );
                 return false;
             }
         }
