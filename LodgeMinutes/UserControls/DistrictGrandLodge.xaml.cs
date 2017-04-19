@@ -69,6 +69,9 @@ namespace LodgeMinutes.UserControls
 
             _sb.AppendFormat("Visitors List{0}______________________________________________{0}{0}", Environment.NewLine);
 
+
+            this.listBoxVisitors.DataContext = _visitors;
+
         }
 
         /// <summary>
@@ -76,7 +79,7 @@ namespace LodgeMinutes.UserControls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonCommitVisitor_Click( object sender, RoutedEventArgs e )
+        private void buttonAdd_Click( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -140,10 +143,8 @@ namespace LodgeMinutes.UserControls
                     // add it to out notes
                     _sb.AppendFormat("{0}{1}", newVisitor.ToString(), Environment.NewLine);
 
-                    // save changes
+                    // add visitor to list
                     this.Visitors.Add(newVisitor);
-
-                    MinutesViewModel.Instance.Save();
 
                 }
             }
@@ -153,11 +154,41 @@ namespace LodgeMinutes.UserControls
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the buttonCommit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
+        private void buttonCommit_Click( object sender, RoutedEventArgs e )
+        {
+            try
+            {
+                Mouse.OverrideCursor = Cursors.Wait;
+
+                // write out visitors to the notes
+                MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, Environment.NewLine, Environment.NewLine, _sb.ToString() );
+                MinutesViewModel.Instance.Save();
+                
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
+        }
+
+        /// <summary>
+        /// Sets the error control.
+        /// </summary>
+        /// <param name="control">The control.</param>
         private void SetErrorControl( TextBox control )
         {
             control.BorderBrush = Brushes.Red;
         }
 
+        /// <summary>
+        /// Sets the clear control.
+        /// </summary>
+        /// <param name="control">The control.</param>
         private void SetClearControl( TextBox control )
         {
             control.BorderBrush = null;
