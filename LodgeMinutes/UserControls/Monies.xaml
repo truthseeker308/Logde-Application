@@ -15,7 +15,6 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Style="{StaticResource LabelCenterBold}">Moneys Recieved / Paid to the Treasurer</Label>
-
         <DataGrid  Grid.Row="1" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" x:Name="gridMonies" ItemsSource="{Binding}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
           CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True">
             <DataGrid.Columns>
@@ -24,9 +23,7 @@
                 <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
         <Label  Grid.Row="2" Style="{StaticResource LabelCenterBold}" FontWeight="Bold">Bills</Label>
-
         <DataGrid Grid.Row="3" FontSize="12" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" ItemsSource="{Binding}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
           CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True" Name="gridBills">
             <DataGrid.Columns>
@@ -36,9 +33,9 @@
                 <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Button  Grid.Row="4" Name="buttonCommit" DockPanel.Dock="Bottom"  Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>
-
+        <Button  Grid.Row="4" Name="buttonCommit" DockPanel.Dock="Bottom"  Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect> Commit</Button>
     </Grid>
-        
 </UserControl>

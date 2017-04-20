@@ -47,30 +47,43 @@ namespace LodgeMinutes.UserControls
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonBills control.
+        /// Handles the Click event of the buttonCommit control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonBills_Click( object sender, RoutedEventArgs e )
-        {
-
-        }
-
-        /// <summary>
-        /// Handles the Click event of the buttonMoney control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonMoney_Click( object sender, RoutedEventArgs e )
-        {
-             
-        }
-
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         private void buttonCommit_Click( object sender, RoutedEventArgs e )
         {
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
+
+                // write the info from the bills to our notes
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine( "Monies Paid to the Treasurer" );
+                sb.AppendLine();
+                sb.AppendLine();
+
+                foreach( var money in _monies )
+                {
+                    sb.AppendLine( money.ToString() );
+                    sb.AppendLine();
+                }
+
+                sb.AppendLine( "Bills" );
+                sb.AppendLine();
+                sb.AppendLine();
+
+                foreach( var bill in _bills )
+                {
+                    sb.AppendLine( bill.ToString() );
+                    sb.AppendLine();
+                }
+
+                sb.AppendLine();
+                sb.AppendLine();
+
+                MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, sb.ToString() );
 
                 MinutesViewModel.Instance.Save();
 
