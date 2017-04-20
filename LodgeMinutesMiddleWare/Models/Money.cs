@@ -72,12 +72,5 @@ namespace LodgeMinutesMiddleWare.Models
 
         #endregion
 
-        public Money()
-        {
-            _id = Guid.NewGuid().ToString();
-            _amount = 0.0;
-
-        }
-
     }
 }

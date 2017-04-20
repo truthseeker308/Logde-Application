@@ -2,6 +2,7 @@
 using LodgeMinutesMiddleWare.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,27 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Monies : UserControl
     {
+        #region Fields
+
+        private ObservableCollection<Money> _monies;
+
+        private ObservableCollection<Bill> _bills;
+
+        #endregion
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Monies"/> class.
         /// </summary>
         public Monies()
         {
             InitializeComponent();
+            
+            _monies = new ObservableCollection<Money>();
+
+            _bills = new ObservableCollection<Bill>();
+
+            this.gridMonies.DataContext = _monies;
+            this.gridBills.DataContext = _bills;
         }
 
         /// <summary>

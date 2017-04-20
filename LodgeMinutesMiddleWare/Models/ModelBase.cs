@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace LodgeMinutesMiddleWare.Models
 {
-    [Serializable]
     public class ModelBase: INotifyPropertyChanged, IEditableObject
     {
         #region Fields
+        
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //private ModelBase _parent;
         private ModelBase _current;
         private ModelBase _backup;
 
         private bool _inTxn = false;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -35,6 +33,9 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        /// <summary>
+        /// Begins the edit.
+        /// </summary>
         void IEditableObject.BeginEdit()
         {
             if( !_inTxn )
@@ -44,6 +45,9 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        /// <summary>
+        /// Ends the edit.
+        /// </summary>
         void IEditableObject.EndEdit()
         {
             if( _inTxn )
@@ -53,6 +57,9 @@ namespace LodgeMinutesMiddleWare.Models
             }
         }
 
+        /// <summary>
+        /// Cancels the edit.
+        /// </summary>
         void IEditableObject.CancelEdit()
         {
             if( _inTxn )
@@ -62,6 +69,7 @@ namespace LodgeMinutesMiddleWare.Models
             }
 
         }
+        
 
     }
 }

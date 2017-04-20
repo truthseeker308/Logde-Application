@@ -92,9 +92,12 @@ namespace LodgeMinutesMiddleWare.Models
         /// Creates a new instance of the <cref>Bill</cref>  class.
         /// </summary>
         public Bill()
+            : base()
         {
             _id = Guid.NewGuid().ToString();
         }
+
+        
 
     }
 }

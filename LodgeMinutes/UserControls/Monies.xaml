@@ -6,22 +6,29 @@
              xmlns:local="clr-namespace:LodgeMinutes.UserControls"
               xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
-    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Moneys Recieved / Paid to the Treasurer</Label>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Style="{StaticResource LabelCenterBold}">Moneys Recieved / Paid to the Treasurer</Label>
 
-        <DataGrid IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" x:Name="gridMonies" Height="100" ItemsSource="{Binding Monies}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
-          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
+        <DataGrid  Grid.Row="1" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" x:Name="gridMonies" ItemsSource="{Binding}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
+          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*" />
                 <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}" Width="*" />
                 <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0" FontWeight="Bold">Bills</Label>
 
-        <DataGrid FontSize="12" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" Height="100" ItemsSource="{Binding Bills}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
-          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single">
+        <Label  Grid.Row="2" Style="{StaticResource LabelCenterBold}" FontWeight="Bold">Bills</Label>
+
+        <DataGrid Grid.Row="3" FontSize="12" IsReadOnly="False" AutoGenerateColumns="False" Margin="0,5,0,5" ItemsSource="{Binding}" CanUserReorderColumns="True" CanUserResizeColumns="True" 
+          CanUserResizeRows="False" CanUserSortColumns="True" SelectionMode="Single" CanUserAddRows="True" CanUserDeleteRows="True" Name="gridBills">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" Width="*" />
                 <DataGridTextColumn Header="Purpose" Binding="{Binding Purpose}" Width="*" />
@@ -29,6 +36,9 @@
                 <DataGridCheckBoxColumn Header="Paid" Binding="{Binding Paid}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="buttonCommit" Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>
-    </StackPanel>
+
+        <Button  Grid.Row="4" Name="buttonCommit" DockPanel.Dock="Bottom"  Click="buttonCommit_Click" HorizontalAlignment="Center" VerticalAlignment="Center">Commit</Button>
+
+    </Grid>
+        
 </UserControl>
