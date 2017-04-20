@@ -72,5 +72,25 @@ namespace LodgeMinutesMiddleWare.Models
 
         #endregion
 
+        public Money()
+            : base()
+        {
+            this.Amount = 0;
+            this.Purpose = String.Empty;
+            this.Paid = false;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            // TODO: return a string of this instance
+            return String.Format( "Amount- {0}\tPurpose - {2}\tPaid -{2}", this.Amount, this.Purpose, this.Paid );
+        }
+
     }
 }

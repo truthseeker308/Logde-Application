@@ -19,9 +19,17 @@ namespace LodgeMinutesMiddleWare.Models
 
         private bool _inTxn = false;
 
+        private string _id;
+
         #endregion
 
-        public ModelBase() { }
+        protected string ID
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        public ModelBase() { _id = Guid.NewGuid().ToString(); }
 
         protected void NotifyPropertyChanged( [CallerMemberName] String propertyName = "" )
         {

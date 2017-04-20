@@ -94,10 +94,23 @@ namespace LodgeMinutesMiddleWare.Models
         public Bill()
             : base()
         {
-            _id = Guid.NewGuid().ToString();
+            this.Amount = 0;
+            this.Purpose = String.Empty;
+            this.Organization = String.Empty;
+            this.Approved = false;
         }
 
-        
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            // TODO: return a string of this instance
+            return String.Format( "Amount- {0}\tPurpose - {2}\tOrganization - {2}\tApproved -{3}", this.Amount, this.Purpose, this.Organization, this.Approved );
+        }
 
     }
 }
