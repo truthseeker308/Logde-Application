@@ -44,6 +44,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,11 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Enums\Degrees.cs" />
     <Compile Include="Enums\Forms.cs" />
     <Compile Include="Enums\LodgeStatus.cs" />
     <Compile Include="Enums\MeetingTypes.cs" />
+    <Compile Include="Enums\MotionResults.cs" />
     <Compile Include="Enums\VisitorTypes.cs" />
     <Compile Include="Enums\VisitTypes.cs" />
     <Compile Include="Helpers\FormattingHelper.cs" />
@@ -65,7 +68,10 @@
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\Money.cs" />
-    <Compile Include="Models\Necrologies.cs" />
+    <Compile Include="Models\Motion.cs" />
+    <Compile Include="Models\Amendment.cs" />
+    <Compile Include="Models\MotionAmendment.cs" />
+    <Compile Include="Models\MotionBase.cs" />
     <Compile Include="Models\Necrology.cs" />
     <Compile Include="Views\MinutesViewModel.cs" />
     <Compile Include="Models\VisitorModel.cs" />

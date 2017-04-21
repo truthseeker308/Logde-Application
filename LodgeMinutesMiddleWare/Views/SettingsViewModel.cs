@@ -57,6 +57,8 @@ namespace LodgeMinutesMiddleWare.Views
 
         private string _lastUsedFilename;
 
+        private bool _isTextOutput = false;
+
         #endregion
 
         #region Properties
@@ -361,6 +363,25 @@ namespace LodgeMinutesMiddleWare.Views
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is text output.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is text output; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsTextOutput
+        {
+            get { return _isTextOutput; }
+            set
+            {
+                if( _isTextOutput != value )
+                {
+                    _isTextOutput = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
         /// <summary>
@@ -372,6 +393,8 @@ namespace LodgeMinutesMiddleWare.Views
             _monthsDark = new List<string>();
 
             _locations = new List<string>();
+
+            _isTextOutput = true;
 
             this.Load();
 

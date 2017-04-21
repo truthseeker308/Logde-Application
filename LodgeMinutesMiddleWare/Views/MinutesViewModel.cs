@@ -136,6 +136,7 @@ namespace LodgeMinutesMiddleWare.Views
                 // if the don't have a filename, create one
                 if (String.IsNullOrWhiteSpace(SettingsViewModel.Instance.LastFilename))
                 {
+                    // TODO: check the settings for txt, word, or rtf and set the appropriate extension
                     SettingsViewModel.Instance.LastFilename = String.Format( "minutes__{0}.txt", FormattingHelper.GetDateForFileSystem() );
                     SettingsViewModel.Instance.Save();
                 }

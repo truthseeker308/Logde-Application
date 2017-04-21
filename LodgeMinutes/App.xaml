@@ -23,13 +23,20 @@
         </Style>
 
         <!--Textbox Styling-->
+        
+        <!--Label Bold Styling-->
         <Style TargetType="{x:Type Label}" x:Key="LabelCenterBold" >
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         
-        <!--Label Bold Styling-->
+        <Style TargetType="Label" x:Key="NormalLabel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Normal" />
+        </Style>
+
 
     </Application.Resources>
 </Application>

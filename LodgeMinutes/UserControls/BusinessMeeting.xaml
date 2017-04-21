@@ -8,16 +8,16 @@
     <Grid>
         <TabControl Name="tabBusiness" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <TabItem Header="Basic Tasks">
-                <local:BasicTasks />
+                <local:BasicTasks x:Name="ucBasicTasks"/>
             </TabItem>
             <TabItem Header="Motions">
-                <local:Motions />
+                <local:Motions x:Name="ucMotions" />
             </TabItem>
             <TabItem Header="Member - Applications">
-                <local:Applications />
+                <local:Applications x:Name="ucApplications" />
             </TabItem>
             <TabItem Header="Members Demits / Suspenions">
-                <local:Demits />
+                <local:Demits x:Name="ucDemits" />
             </TabItem>
             <TabItem Header="Members - Necrologies">
                 <local:Necrologies x:Name="ucNecrologies" />

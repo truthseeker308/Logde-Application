@@ -20,8 +20,49 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class BusinessMeeting : UserControl
     {
+        /// <summary>
+        /// Gets the basic tasks.
+        /// </summary>
+        /// <value>
+        /// The basic tasks.
+        /// </value>
+        public BasicTasks BasicTasks { get { return ucBasicTasks; } }
+
+        /// <summary>
+        /// Gets the motions.
+        /// </summary>
+        /// <value>
+        /// The motions.
+        /// </value>
+        public Motions Motions { get { return ucMotions; } }
+
+        /// <summary>
+        /// Gets the applications.
+        /// </summary>
+        /// <value>
+        /// The applications.
+        /// </value>
+        public Applications Applications { get { return ucApplications; } }
+
+        /// <summary>
+        /// Gets the demits.
+        /// </summary>
+        /// <value>
+        /// The demits.
+        /// </value>
+        public Demits Demits { get { return ucDemits; } }
+
+        /// <summary>
+        /// Gets the necrologies.
+        /// </summary>
+        /// <value>
+        /// The necrologies.
+        /// </value>
         public Necrologies Necrologies { get { return ucNecrologies; } }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BusinessMeeting"/> class.
+        /// </summary>
         public BusinessMeeting()
         {
             InitializeComponent();

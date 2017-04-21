@@ -61,8 +61,6 @@ namespace LodgeMinutes.UserControls
                 StringBuilder sb = new StringBuilder();
 
                 sb.AppendLine( "Monies Paid to the Treasurer" );
-                sb.AppendLine();
-                sb.AppendLine();
 
                 foreach( var money in _monies )
                 {
@@ -71,8 +69,6 @@ namespace LodgeMinutes.UserControls
                 }
 
                 sb.AppendLine( "Bills" );
-                sb.AppendLine();
-                sb.AppendLine();
 
                 foreach( var bill in _bills )
                 {
