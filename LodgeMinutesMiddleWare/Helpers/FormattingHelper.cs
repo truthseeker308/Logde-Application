@@ -52,7 +52,7 @@ namespace LodgeMinutesMiddleWare.Helpers
         /// <returns></returns>
         public static string GetDateAndTime()
         {
-            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "MM/dd/yyyy hh:mm:ss" : "dd/MM/yyyy HH:mm:ss" );
+            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "MM/dd/yyyy hh:mm" : "dd/MM/yyyy HH:mm" );
         }
 
 

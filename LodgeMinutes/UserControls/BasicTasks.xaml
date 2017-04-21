@@ -15,12 +15,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center">
-                    <Button Width="235" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Width="235" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="buttonBusinessOpened" Click="buttonBusinessOpened_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
-                        </Button.Effect> Business Meeting Opened / Closed
+                        </Button.Effect> Open Business Meeting
                     </Button>
-                    <Button Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
+                    <Button Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="235" x:Name="buttonBusinessClosedReopened" Click="buttonBusinessClosedReopened_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
                         </Button.Effect> Business Meeting Suspended / Re-opened
@@ -28,9 +28,9 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5,0,5,0">
                     <Label HorizontalAlignment="Center" VerticalAlignment="Center">Grand Constitutions Read</Label>
-                    <TextBox Margin="0,0,5,0"/>
-                    <CheckBox Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Cell Phone Policy Read</CheckBox>
-                    <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+                    <TextBox Margin="0,0,5,0" x:Name="tbGrandConstitutions"/>
+                    <CheckBox Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="cbCellPhonePolicy">Cell Phone Policy Read</CheckBox>
+                    <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" x:Name="buttonGrandCellPhone" Click="buttonGrandCellPhone_Click">
                         <Button.Effect>
                             <DropShadowEffect/>
                         </Button.Effect> Commit
@@ -40,15 +40,15 @@
 
             <Label FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Secretary Reports</Label>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Name="comboboxMinutes" Width="150" Text="Minutes">
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="cbMinutes" Width="150" Text="Minutes">
                 </ComboBox>
-                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
-                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status">
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" x:Name="dtSecreataryDate" />
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status"  SelectedIndex="0" x:Name="cbSecretaryMinutes">
                     <ComboBoxItem>Accepted As Read</ComboBoxItem>
                     <ComboBoxItem>Accepted As Amended</ComboBoxItem>
                     <ComboBoxItem>Reading Deferred</ComboBoxItem>
                 </ComboBox>
-                <Button Margin="20,0,0,0">
+                <Button Margin="20,0,0,0" x:Name="buttonSecretaryReports" Click="buttonSecretaryReports_Click">
                     <Button.Effect>
                         <DropShadowEffect/>
                     </Button.Effect> Commit
@@ -57,14 +57,14 @@
 
             <Label  Margin="0,20,0,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Treasurer Reports</Label>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
-                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" />
-                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status">
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" x:Name="dtDateTreasurer1" />
+                <xctk:DateTimePicker HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" x:Name="dtDateTreasurer2" />
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20,0,0,0" Text="Status" x:Name="cbMinutesState" SelectedIndex="0" >
                     <ComboBoxItem>Accepted As Read</ComboBoxItem>
                     <ComboBoxItem>Accepted As Amended</ComboBoxItem>
                     <ComboBoxItem>Reading Deferred</ComboBoxItem>
                 </ComboBox>
-                <Button Margin="20,0,20,0">
+                <Button Margin="20,0,20,0" x:Name="buttonTreasurerReports" Click="buttonTreasurerReports_Click">
                     <Button.Effect>
                         <DropShadowEffect/>
                     </Button.Effect> Commit
