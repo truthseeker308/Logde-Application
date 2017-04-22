@@ -80,21 +80,8 @@
             <xctk:IntegerUpDown Grid.Row="9" Grid.Column="1" Value="{Binding NumberOfRegularMeetingPerMonth, Mode=TwoWay}" />
 
             <Label Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Usual Months 'Dark'</Label>
-            <xctk:CheckComboBox Grid.Row="10" Grid.Column="1"  x:Name="ccbDarkMonths">
-                <ComboBoxItem>Janurary</ComboBoxItem>
-                <ComboBoxItem>Febuary</ComboBoxItem>
-                <ComboBoxItem>March</ComboBoxItem>
-                <ComboBoxItem>April</ComboBoxItem>
-                <ComboBoxItem>May</ComboBoxItem>
-                <ComboBoxItem>June</ComboBoxItem>
-                <ComboBoxItem>July</ComboBoxItem>
-                <ComboBoxItem>August</ComboBoxItem>
-                <ComboBoxItem>September</ComboBoxItem>
-                <ComboBoxItem>October</ComboBoxItem>
-                <ComboBoxItem>November</ComboBoxItem>
-                <ComboBoxItem>December</ComboBoxItem>
-            </xctk:CheckComboBox>
-
+            <xctk:CheckComboBox Grid.Row="10" Grid.Column="1" x:Name="ccbDarkMonths" IsEditable="False" ItemsSource="{Binding Months}" />
+                                
             <Label Grid.Row="11" Grid.Column="0" Style="{StaticResource LabelCenterBold}">12/24 Hour Time</Label>
             <ComboBox Grid.Row="11" Grid.Column="1" SelectionChanged="ComboBox_SelectionChanged" Name="cbTimeFormat">
                 <ComboBoxItem>12 Hour</ComboBoxItem>
@@ -102,19 +89,7 @@
             </ComboBox>
 
             <Label Grid.Row="12" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Officer Installation Month</Label>
-            <ComboBox Grid.Row="12" Grid.Column="1" SelectedIndex="{Binding OfficerInstallationMonth, Mode=TwoWay}">
-                <ComboBoxItem>Janurary</ComboBoxItem>
-                <ComboBoxItem>Febuary</ComboBoxItem>
-                <ComboBoxItem>March</ComboBoxItem>
-                <ComboBoxItem>April</ComboBoxItem>
-                <ComboBoxItem>May</ComboBoxItem>
-                <ComboBoxItem>June</ComboBoxItem>
-                <ComboBoxItem>July</ComboBoxItem>
-                <ComboBoxItem>August</ComboBoxItem>
-                <ComboBoxItem>September</ComboBoxItem>
-                <ComboBoxItem>October</ComboBoxItem>
-                <ComboBoxItem>November</ComboBoxItem>
-                <ComboBoxItem>December</ComboBoxItem>
+            <ComboBox Grid.Row="12" Grid.Column="1" SelectedIndex="{Binding OfficerInstallationMonth, Mode=TwoWay}" ItemsSource="{Binding Months}">
             </ComboBox>
 
             <Label Grid.Row="13" Grid.Column="0" Style="{StaticResource LabelCenterBold}" >Remember Minute Dates</Label>

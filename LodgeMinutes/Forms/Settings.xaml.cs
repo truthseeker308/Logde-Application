@@ -12,6 +12,7 @@ namespace LodgeMinutes.Forms
     {
         #region Fields
 
+
         #endregion
 
         /// <summary>
@@ -49,6 +50,11 @@ namespace LodgeMinutes.Forms
             try
             {
                 Mouse.OverrideCursor = Cursors.Wait;
+
+                foreach( var item in this.ccbDarkMonths.SelectedItems )
+                {
+                    SettingsViewModel.Instance.DarkMonths.Add( item.ToString() );
+                }
 
                 if( SettingsViewModel.Instance.Save() )
                 {

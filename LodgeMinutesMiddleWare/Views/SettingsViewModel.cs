@@ -1,6 +1,7 @@
 ﻿using LodgeMinutesMiddleWare.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Drawing;
@@ -17,9 +18,9 @@ namespace LodgeMinutesMiddleWare.Views
     {
         #region Fields
 
-        private string _lodgeFullName;
+        private string _lodgeFullName = String.Empty;
 
-        private string _lodgeAbreviatedName;
+        private string _lodgeAbreviatedName = String.Empty;
 
         private int _specialMeetingCount;
         
@@ -27,15 +28,17 @@ namespace LodgeMinutesMiddleWare.Views
 
         private Bitmap _seal;
 
-        private string _worshipfulMaster;
+        private string _worshipfulMaster = String.Empty;
 
-        private string _seniorWaden;
+        private string _seniorWaden = String.Empty;
 
-        private string _juniorWarden;
+        private string _juniorWarden = String.Empty;
 
-        private string _meetingLocations;
+        private string _meetingLocations = String.Empty;
 
         private List<string> _locations;
+
+        private List<string> _months;
 
         private int _regularMeetingsPerMonth;
 
@@ -51,11 +54,11 @@ namespace LodgeMinutesMiddleWare.Views
 
         private static object _lock = new object();
 
-        private string _savedMinutesDirectory;
+        private string _savedMinutesDirectory = String.Empty;
 
-        private string _savedWordDirectory;
+        private string _savedWordDirectory = String.Empty;
 
-        private string _lastUsedFilename;
+        private string _lastUsedFilename = String.Empty;
 
         private bool _isTextOutput = false;
 
@@ -343,6 +346,25 @@ namespace LodgeMinutesMiddleWare.Views
         {
             get { return _savedMinutesDirectory; }
         }
+        
+        /// <summary>
+        /// Gets the months.
+        /// </summary>
+        /// <value>
+        /// The months.
+        /// </value>
+        public List<string> Months
+        {
+            get { return _months; }
+            set
+            {
+                if( _months != value )
+                {
+                    _months = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Returns the single instance of the SettingsViewModel
@@ -394,8 +416,10 @@ namespace LodgeMinutesMiddleWare.Views
 
             _locations = new List<string>();
 
-            _isTextOutput = true;
+            _months = new List<string>();
 
+            _isTextOutput = true;
+            
             this.Load();
 
         }
@@ -409,6 +433,8 @@ namespace LodgeMinutesMiddleWare.Views
         {
             try
             {
+                _months.AddRange( "Janurary,Febuary,March,April,May,June,July,August,September,October,November,December".Split( ',' ).ToList() );
+
                 // read the values from the app.config file
                 _lodgeFullName = ConfigurationManager.AppSettings[Constants.LodgeFullName];
                 _lodgeAbreviatedName = ConfigurationManager.AppSettings[Constants.LodgeAbreviatedName];
@@ -428,8 +454,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 _regularMeetingsPerMonth = int.Parse( ConfigurationManager.AppSettings[Constants.NumberOfRegularMeetingsPerYear] );
 
-                // TODO: we need to do some parsing of dates here
-                //_monthsDark = new List<string>( ConfigurationManager.AppSettings[Constants.MonthsDark].Split( ',' ).Select( DateTime.Parse ).ToList() );
+                _monthsDark = new List<string>( ConfigurationManager.AppSettings[Constants.MonthsDark].Split( ',' ).ToList() );
 
                 _isTwelveHourTime = bool.Parse( ConfigurationManager.AppSettings[Constants.TimeFormat] );
 
@@ -488,8 +513,7 @@ namespace LodgeMinutesMiddleWare.Views
 
                 config.AppSettings.Settings[Constants.NumberOfRegularMeetingsPerYear].Value = _regularMeetingsPerMonth.ToString();
 
-                // TODO: we need to do some parsing of dates here
-                //_monthsDark = new List<string>( ConfigurationManager.AppSettings[Constants.MonthsDark].Split( ',' ).Select( DateTime.Parse ).ToList() );
+                config.AppSettings.Settings[Constants.MonthsDark].Value = String.Join( ",", _monthsDark );
 
                 config.AppSettings.Settings[Constants.TimeFormat].Value = _isTwelveHourTime.ToString();
 
