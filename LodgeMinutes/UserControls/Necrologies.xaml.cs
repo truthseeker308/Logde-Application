@@ -74,16 +74,17 @@ namespace LodgeMinutes.UserControls
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine( "Necrologies" );
-            sb.AppendLine();
+            sb.AppendLine( "The Master called up the Lodge and read the following Necorlogy(s)." );
 
-            // write necrologies to notes
             foreach ( var necrology in _necrologies )
             {
                 sb.AppendLine( necrology.ToString() );
             }
 
-            sb.AppendLine();
+            if ( this.checkboxYes.IsChecked.HasValue && this.checkboxYes.IsChecked.Value )
+            {
+                sb.AppendLine( "A page was set aside in the records for our departed brother(s)." );
+            }
 
             MinutesViewModel.Instance.Notes = String.Format("{0}{1}{2}", MinutesViewModel.Instance.Notes,Environment.NewLine, sb.ToString() );
 
