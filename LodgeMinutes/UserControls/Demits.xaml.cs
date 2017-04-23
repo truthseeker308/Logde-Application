@@ -203,7 +203,7 @@ namespace LodgeMinutes.UserControls
         /// <param name="control">The control.</param>
         private void ClearErrorControl( Control control )
         {
-            control.BorderBrush = null;
+            control.BorderBrush = Brushes.Gray;
             control.ToolTip = null;
         }
 
@@ -213,7 +213,7 @@ namespace LodgeMinutes.UserControls
         /// <returns></returns>
         private bool SaveDemit()
         {
-            var message = String.Format( "{0} was demmited on {1}, Demmital type - {2}.", this.tbDemitName.Text, this.dtDemit.Value.Value.ToShortDateString(), this.cbDemit.Text );
+            var message = String.Format( "{0} was demmited on {1}, demmital type - {2}.", this.tbDemitName.Text, this.dtDemit.Value.Value.ToShortDateString(), this.cbDemit.Text );
 
             MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, message );
 
@@ -226,7 +226,7 @@ namespace LodgeMinutes.UserControls
         /// <returns></returns>
         private bool SaveSuspension()
         {
-            var message = String.Format( "{0} was suspending on {1} the grand lodge policies documented and followd - {2}.", this.tbSuspension.Text, this.dtSuspension.Value.Value.ToShortDateString(), this.cbSuspension.IsChecked );
+            var message = String.Format( "{0} was suspended on {1}, were the grand lodge policies documented and followd - {2}.", this.tbSuspension.Text, this.dtSuspension.Value.Value.ToShortDateString(), this.cbSuspension.IsChecked );
 
             MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, message );
 
