@@ -15,12 +15,6 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Opening : UserControl
     {
-        #region Fields
-
-        private StringBuilder _sb = new StringBuilder();
-
-        #endregion
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Opening"/> class.
         /// </summary>
@@ -73,24 +67,30 @@ namespace LodgeMinutes.UserControls
 
                 string time = this.lblMeetingTime.Content == null ? DateTime.Now.ToShortTimeString() : this.lblMeetingTime.Content.ToString();
 
-                // set the opening text in the notes
-                _sb.AppendFormat( "Lodge Opening{0}{0}Date - {1}  Time - {2}{0}Meeting Type - {3}{0}Location - {4}{0}Opening Degree - {5}{0}Opening Form - {6}{0}By - {7}{0}Members Attending - {8}{0}Visitors Attending - {9}{0}",
-                    Environment.NewLine,
-                    this.dtDate.SelectedDate.Value.ToShortDateString(),
-                    time,
-                    this.ddlMeetingYType.Text,
-                    location,
-                    this.ddlDegree.Text,
-                    this.ddlOpeningForm.Text,
-                    this.tbWM.Text.Trim(),
-                    this.iudMemberCount.Value.ToString(),
-                    this.iudVisitorCount.Value.ToString() );
+                var message = String.Empty;
+
+                // 0 means regular, 1 means special
+                if ( this.ddlMeetingYType.SelectedIndex == 0  )
+                {
+                    message = String.Format( Properties.Resources.regularOpen, SettingsViewModel.Instance.LodgeName, location, DateTime.Now.ToLongDateString(), this.ddlDegree.Text, this.ddlOpeningForm.Text, this.tbWM.Text , time ).Trim();
+                }
+                else
+                {
+                    message = String.Format( Properties.Resources.regularOpen, SettingsViewModel.Instance.LodgeName, location, DateTime.Now.ToLongDateString(), this.ddlDegree.Text, this.ddlOpeningForm.Text, this.tbWM.Text, time ).Trim();
+                }
+
+                // add by dispensation if needed
+                if ( this.cbByDispensation.IsChecked.HasValue && this.cbByDispensation.IsChecked.Value )
+                {
+                    message = String.Format( "{0}{1}.{2}", message, Properties.Resources.byDispensation, Environment.NewLine );
+                }
+                else
+                {
+                    message = String.Format( "{0}.{1}", message, Environment.NewLine );
+                }
 
                 // set the notes so they bind in the appropriate text box
-                MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, Environment.NewLine, _sb.ToString() );
-
-                // clear our string builder
-                _sb.Clear();
+                MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, message,  Environment.NewLine );
 
                 if( MinutesViewModel.Instance.Save() )
                 {
