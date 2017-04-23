@@ -169,7 +169,7 @@ namespace LodgeMinutesMiddleWare.Models
         /// </returns>
         public bool IsValid()
         {
-            if( String.IsNullOrWhiteSpace( this.MadeBy ) || String.IsNullOrWhiteSpace( this.SecondedBy ) || String.IsNullOrWhiteSpace( this.Specifics ) || this.Results == null )
+            if( String.IsNullOrWhiteSpace( this.MadeBy ) || String.IsNullOrWhiteSpace( this.SecondedBy ) || String.IsNullOrWhiteSpace( this.Specifics ) )
             {
                 return false;
             }

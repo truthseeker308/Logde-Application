@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="amendmentMade" xml:space="preserve">
+    <value>An amendment to the motion was made by ({0}) and seconded by {1} to ({2}).{3}\nThe amendment {4}.</value>
+  </data>
   <data name="byDispensation" xml:space="preserve">
     <value>,By Dispensation of the Grand Master'</value>
+  </data>
+  <data name="motionMade" xml:space="preserve">
+    <value>A motion was made by ({0}) and seconded by {1} to ({2}).{3}\nThe motion {4}.</value>
   </data>
   <data name="regularOpen" xml:space="preserve">
     <value>A Regular Communication, of {0} was held in the {1}, on {2}. Lodge was opened on the {3} dergree, {4} by {5}, at {6}

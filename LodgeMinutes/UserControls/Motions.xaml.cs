@@ -140,7 +140,10 @@ namespace LodgeMinutes.UserControls
         /// </summary>
         private void AddAmendmentToNotes()
         {
-            MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, Environment.NewLine, _motionAmendments.Amendment.ToString() );
+            MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, _motionAmendments.Amendment.ToString() );
+
+            MinutesViewModel.Instance.Save();
+
         }
 
         /// <summary>
@@ -148,14 +151,11 @@ namespace LodgeMinutes.UserControls
         /// </summary>
         private void AddMotionsToNotes()
         {
-            MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, Environment.NewLine, _motionAmendments.Motion.ToString() );
-        }
+            MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, _motionAmendments.Motion.ToString() );
 
-        /// <summary>
-        /// Adds the motion amendment to notes.
-        /// </summary>
-        private void AddMotionAmendmentToNotes()
-        {
+            MinutesViewModel.Instance.Save();
+
+
         }
 
         /// <summary>
@@ -189,18 +189,6 @@ namespace LodgeMinutes.UserControls
             {
                 this.ClearError( tbMotionSpecifics );
             }
-
-            if( _motionAmendments.Motion.Results == null )
-            {
-                this.spMotionRadioButtons.Background = Brushes.Red;
-                this.spMotionRadioButtons.ToolTip = "Result is required";
-            }
-            else
-            {
-                this.spMotionRadioButtons.Background = null;
-                this.spMotionRadioButtons.ToolTip = null;
-            }
-
         }
 
         /// <summary>
@@ -246,18 +234,6 @@ namespace LodgeMinutes.UserControls
             {
                 this.ClearError( tbAmendmentSpecifics );
             }
-
-            if( _motionAmendments.Motion.Results == null )
-            {
-                this.spAmendmentRadioButtons.Background = Brushes.Red;
-                this.spAmendmentRadioButtons.ToolTip = "Result is required";
-            }
-            else
-            {
-                this.spAmendmentRadioButtons.Background = null;
-                this.spAmendmentRadioButtons.ToolTip = null;
-            }
-
         }
 
         /// <summary>
@@ -289,24 +265,6 @@ namespace LodgeMinutes.UserControls
         {
             control.BorderBrush = null;
             control.ToolTip = null;
-        }
-
-        /// <summary>
-        /// Validates the motion.
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidateMotion()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// Validates the amdenment.
-        /// </summary>
-        /// <returns></returns>
-        private bool ValidateAmdenment()
-        {
-            return false;
         }
 
         #endregion

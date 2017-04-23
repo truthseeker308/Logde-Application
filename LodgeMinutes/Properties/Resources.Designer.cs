@@ -61,11 +61,29 @@ namespace LodgeMinutes.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An amendment to the motion was made by ({0}) and seconded by {1} to ({2}).{3}\nThe amendment {4}..
+        /// </summary>
+        internal static string amendmentMade {
+            get {
+                return ResourceManager.GetString("amendmentMade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ,By Dispensation of the Grand Master&apos;.
         /// </summary>
         internal static string byDispensation {
             get {
                 return ResourceManager.GetString("byDispensation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A motion was made by ({0}) and seconded by {1} to ({2}).{3}\nThe motion {4}..
+        /// </summary>
+        internal static string motionMade {
+            get {
+                return ResourceManager.GetString("motionMade", resourceCulture);
             }
         }
         

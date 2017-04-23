@@ -27,7 +27,7 @@ namespace LodgeMinutesMiddleWare.Models
         /// </returns>
         public override string ToString()
         {
-            return String.Format( "Amdendment Made By {0}, Seconded By: {1}, Specifics - {2}, Status - {3}", this.MadeBy, this.SecondedBy, this.Specifics, this.Results );
+            return String.Format( "An amendment was made by ({0}) and seconded by ({1}), to ({2}).\nThe motion {3}.", this.MadeBy, this.SecondedBy, this.Specifics, this.Results );
         }
 
     }
