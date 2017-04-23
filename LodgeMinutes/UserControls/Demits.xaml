@@ -7,28 +7,28 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d">
     <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Members - Demits</Label>
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Demitting Brothers Name</Label>
-        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
+        <Label Style="{StaticResource LabelCenterBold}">Members - Demits</Label>
+        <Label Style="{StaticResource NormalLabel}" Margin="0,5,0,0">Demitting Brothers Name</Label>
+        <TextBox x:Name="tbDemitName" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Date of Demit</Label>
-        <xctk:DateTimePicker Width="200" />
+        <xctk:DateTimePicker Width="200" x:Name="dtDemit" />
         <Label HorizontalAlignment="Center" VerticalAlignment="Center">Type of Demit</Label>
-        <ComboBox Margin="0,5,0,0" Width="200">
+        <ComboBox x:Name="cbDemit" Margin="0,5,0,0" Width="200" SelectedIndex="0" >
             <ComboBoxItem>Certificate of Demit</ComboBoxItem>
         </ComboBox>
-        <Button Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Button Margin="0,5,0,0" x:Name="buttonCommitDemit" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonCommitDemit_Click" >
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect> Commit
         </Button>
         <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Members - Suspensions NPD</Label>
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Member to be Suspended</Label>
-        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
+        <TextBox x:Name="tbSuspension" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Effective Date of Suspension</Label>
-        <xctk:DateTimePicker Width="200" />
+        <xctk:DateTimePicker Width="200" x:Name="dtSuspension" />
         <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Grand Lodge Non-Payment of Dues Policies followed and documented?</Label>
-        <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+        <CheckBox x:Name="cbSuspension" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
+        <Button x:Name="buttonSuspension" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" Click="buttonSuspension_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect> Commit
