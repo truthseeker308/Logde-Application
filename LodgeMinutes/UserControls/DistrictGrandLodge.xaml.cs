@@ -30,29 +30,11 @@ namespace LodgeMinutes.UserControls
         private string _visitorName;
         private string _chairpersonName;
 
-        private ObservableCollection<VisitorModel> _visitors;
-
         private VisitTypes _visitType;
 
         private VisitorTypes _visitorType;
 
         private StringBuilder _sb = new StringBuilder();
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the visitors.
-        /// </summary>
-        /// <value>
-        /// The visitors.
-        /// </value>
-        public ObservableCollection<VisitorModel> Visitors
-        {
-            get { return _visitors; }
-            set { _visitors = value; }
-        }
 
         #endregion
 
@@ -63,23 +45,16 @@ namespace LodgeMinutes.UserControls
         {
             InitializeComponent();
 
-            _visitors = new ObservableCollection<VisitorModel>();
-
             this.comboVisitorType.SelectedIndex = 0;
-
-            _sb.AppendFormat("Visitors List{0}______________________________________________{0}{0}", Environment.NewLine);
-
-
-            this.listBoxVisitors.DataContext = _visitors;
 
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonCommitVisitor control.
+        /// Handles the Click event of the buttonCommit control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonAdd_Click( object sender, RoutedEventArgs e )
+        private void buttonCommit_Click( object sender, RoutedEventArgs e )
         {
             try
             {
@@ -95,7 +70,7 @@ namespace LodgeMinutes.UserControls
                 bool _isValid = true;
 
                 // do some basic required validation
-                if( String.IsNullOrWhiteSpace( _visitorName ) )
+                if ( String.IsNullOrWhiteSpace( _visitorName ) )
                 {
                     SetErrorControl( this.textboxName );
                     _isValid = false;
@@ -106,7 +81,7 @@ namespace LodgeMinutes.UserControls
                     SetClearControl( this.textboxName );
                 }
 
-                if( String.IsNullOrWhiteSpace( _chairpersonName ) )
+                if ( String.IsNullOrWhiteSpace( _chairpersonName ) )
                 {
                     SetErrorControl( this.textboxTitle );
                     _isValid = false;
@@ -119,7 +94,7 @@ namespace LodgeMinutes.UserControls
 
 
                 // if we have a grand master visit we need district
-                if( _visitorType == VisitorTypes.DistrictDeputyGrandMaster &&
+                if ( _visitorType == VisitorTypes.DistrictDeputyGrandMaster &&
                     String.IsNullOrWhiteSpace( _district ) )
                 {
                     SetErrorControl( this.textboxDDGM );
@@ -132,41 +107,21 @@ namespace LodgeMinutes.UserControls
                 }
 
                 // if we passed our validation we need to add it to our list
-                if( _isValid )
+                if ( _isValid )
                 {
                     // clear the textboxes
                     this.textboxDDGM.Text = this.textboxName.Text = this.textboxTitle.Text = String.Empty;
 
                     // create a new visitor model
-                    VisitorModel newVisitor = new VisitorModel(_visitorName, _district, _chairpersonName, _visitorType, _visitType);
+                    VisitorModel newVisitor = new VisitorModel( _visitorName, _district, _chairpersonName, _visitorType, _visitType );
 
                     // add it to out notes
-                    _sb.AppendFormat("{0}{1}", newVisitor.ToString(), Environment.NewLine);
-
-                    // add visitor to list
-                    this.Visitors.Add(newVisitor);
+                    _sb.AppendFormat( "{0}{1}", newVisitor.ToString(), Environment.NewLine );
 
                 }
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-
-        /// <summary>
-        /// Handles the Click event of the buttonCommit control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonCommit_Click( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Mouse.OverrideCursor = Cursors.Wait;
 
                 // write out visitors to the notes
-                MinutesViewModel.Instance.Notes = String.Concat( MinutesViewModel.Instance.Notes, Environment.NewLine, Environment.NewLine, _sb.ToString() );
+                MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, _sb.ToString() );
                 MinutesViewModel.Instance.Save();
                 
             }

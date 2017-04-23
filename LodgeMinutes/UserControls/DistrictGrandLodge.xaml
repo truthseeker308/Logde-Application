@@ -11,16 +11,10 @@
             <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                 <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">District / Grand Lodge Visits</Label>
                 <ComboBox Width="250" Name="comboVisitType" SelectedIndex="0" Margin="0,5,0,0">
-                    <ComboBox.Effect>
-                        <DropShadowEffect/>
-                    </ComboBox.Effect>
                     <ComboBoxItem>Official</ComboBoxItem>
                     <ComboBoxItem>Fraternal</ComboBoxItem>
                 </ComboBox>
                 <ComboBox Width="250" Name="comboVisitorType" Margin="0,5,0,0" SelectionChanged="comboVisitorType_SelectionChanged">
-                    <ComboBox.Effect>
-                        <DropShadowEffect/>
-                    </ComboBox.Effect>
                     <ComboBoxItem>Grand Master</ComboBoxItem>
                     <ComboBoxItem>District Deputy Grand Master</ComboBoxItem>
                     <ComboBoxItem>Deputy Grand Master (Acting GM)</ComboBoxItem>
@@ -33,20 +27,12 @@
                 <TextBox Name="textboxTitle" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" MaxLength="249" />
                 <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Full Title and Name of Chairperson of Committee</Label>
                 <TextBox Name="textboxName" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="250" MaxLength="249" />
-                <Button Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="buttonCommitVisitor" Click="buttonAdd_Click"  Width="50">
-                    <Button.Effect>
-                        <DropShadowEffect/>
-                    </Button.Effect>
-                    Add
-                </Button>
             </StackPanel>
-            <Label  DockPanel.Dock="Top"  Margin="0,10,0,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Notable Suite Members</Label>
             <Button DockPanel.Dock="Bottom"  Margin="0,15,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Click="buttonCommit_Click">
                 <Button.Effect>
                     <DropShadowEffect/>
                 </Button.Effect> Commit
             </Button>
-            <ListBox Name="listBoxVisitors"  Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding}"></ListBox>
         </DockPanel>
     </Grid>
 </UserControl>

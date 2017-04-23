@@ -1,4 +1,6 @@
 ﻿using LodgeMinutesMiddleWare.Enums;
+using LodgeMinutesMiddleWare.Helpers;
+using LodgeMinutesMiddleWare.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +68,18 @@ namespace LodgeMinutesMiddleWare.Models
         /// <returns></returns>
         public override string ToString()
         {
-            return String.Format( "Visit Type: {0}, Visitor Type: {1}, Name: {2}, Chairperson: {3}", VisitType, VisitorType, Name, ChairpersonName );
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendFormat( "At {0}, {1}, ", FormattingHelper.GetShortTimeWithAmPm(), Name  );
+
+            if( VisitorType == VisitorTypes.DeputyGrandMaster )
+            {
+                sb.AppendFormat("from District {0}",  this.District );
+            }
+
+            sb.AppendFormat( "accompanied by a suite of distinguished Masons, was received by a committee, chaired by {0}, for the purpoe of making a {1} visit to {2}", this.ChairpersonName, this.VisitType, SettingsViewModel.Instance.LodgeName );
+
+            return sb.ToString();
         }
 
     }
