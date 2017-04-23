@@ -13,8 +13,6 @@ namespace LodgeMinutesMiddleWare.Models
     {
         #region Fields
 
-        private string _id;
-
         private double _amount;
 
         private string _purpose;
@@ -24,8 +22,6 @@ namespace LodgeMinutesMiddleWare.Models
         #endregion
 
         #region Properties
-
-        public string ID {  get { return _id; } }
 
         [Required( ErrorMessage = "Amount is required." )]
         [DataType(DataType.Currency)]

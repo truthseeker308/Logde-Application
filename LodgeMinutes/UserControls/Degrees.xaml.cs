@@ -22,14 +22,6 @@ namespace LodgeMinutes.UserControls
     /// </summary>
     public partial class Degrees : UserControl
     {
-        #region Fields
-
-        private bool _firstTime = false;
-
-        private string _header = "\n\nDegrees\n______________________________\n";
-
-        #endregion
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Degrees"/> class.
         /// </summary>

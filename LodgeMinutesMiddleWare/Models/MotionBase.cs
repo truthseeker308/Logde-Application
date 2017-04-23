@@ -177,13 +177,5 @@ namespace LodgeMinutesMiddleWare.Models
             return true;
         }
 
-        /// <summary>
-        /// Method called when a radio button is clicked.
-        /// </summary>
-        public void RadioButtonAction()
-        {
-            int i = 0;
-        }
-
     }
 }
