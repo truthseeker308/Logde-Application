@@ -10,12 +10,13 @@
         <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Page set aside in the reocrds for our departed brother(s)</Label>
         <CheckBox Name="checkboxYes" Margin="0,5,0,0" IsChecked="{Binding SetAside}" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
         <Label Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Departed Brother(s)</Label>
-        <DataGrid x:Name="gridNecrologies" Height="250" AutoGenerateColumns="False" ItemsSource="{Binding BrotherNecrologies}" CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserSortColumns="True" >
+        <DataGrid x:Name="gridNecrologies" Height="250" AutoGenerateColumns="False"
+                  ItemsSource="{Binding}" CanUserAddRows="True" CanUserDeleteRows="True" CanUserReorderColumns="True" CanUserResizeColumns="True" CanUserSortColumns="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="buttonCommit" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Button Name="buttonCommit" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonCommit_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect> Commit</Button>

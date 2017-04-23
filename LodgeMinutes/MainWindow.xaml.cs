@@ -225,8 +225,6 @@ namespace LodgeMinutes
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                var reports = new Reports();
-                reports.ShowDialog();
             }
             finally
             {
