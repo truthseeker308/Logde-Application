@@ -29,12 +29,12 @@ namespace LodgeMinutesMiddleWare.Helpers
         /// <returns></returns>
         public static string GetShortTime()
         {
-            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm:ss" : "HH:mm:ss" );
+            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm" : "HH:mm" );
         }
 
         public static string GetShortTimeWithAmPm()
         {
-            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm:ss tt" : "HH:mm:ss" );
+            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm tt" : "HH:mm tt" );
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace LodgeMinutesMiddleWare.Helpers
         /// <returns></returns>
         public static string GetLongTime()
         {
-            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm:ss tt K" : "HH:mm:ss K" );
+            return DateTime.Now.ToString( SettingsViewModel.Instance.IsTwelveHourFormat ? "hh:mm" : "HH:mm" );
         }
 
         /// <summary>

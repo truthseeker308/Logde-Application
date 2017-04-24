@@ -26,8 +26,6 @@
         <TextBox x:Name="tbSuspension" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" />
         <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">Effective Date of Suspension</Label>
         <xctk:DateTimePicker Width="200" x:Name="dtSuspension" />
-        <Label Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">Grand Lodge Non-Payment of Dues Policies followed and documented?</Label>
-        <CheckBox x:Name="cbSuspension" HorizontalAlignment="Center" VerticalAlignment="Center">Yes</CheckBox>
         <Button x:Name="buttonSuspension" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0" Click="buttonSuspension_Click">
             <Button.Effect>
                 <DropShadowEffect/>

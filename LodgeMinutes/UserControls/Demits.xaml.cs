@@ -92,7 +92,6 @@ namespace LodgeMinutes.UserControls
                         this.tbSuspension.Text = String.Empty;
                         this.dtSuspension.Value = null;
                         this.ClearErrorControl( this.tbSuspension );
-                        this.cbSuspension.IsChecked = false;
                         this.ClearErrorControl( this.dtSuspension );
                         MessageBox.Show( "Suspension saved.", "Success" );
                     }
@@ -213,7 +212,7 @@ namespace LodgeMinutes.UserControls
         /// <returns></returns>
         private bool SaveDemit()
         {
-            var message = String.Format( "{0} was demmited on {1}, demmital type - {2}.", this.tbDemitName.Text, this.dtDemit.Value.Value.ToShortDateString(), this.cbDemit.Text );
+            var message = String.Format("The Secretary announced that upon their written requests, and they being clear on the books, a (Demit/CertificateofClearance) had been issued to ({0}) dated ({1}).", this.tbDemitName.Text, this.dtDemit.Value.Value.ToShortDateString() );
 
             MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, message );
 
@@ -226,7 +225,7 @@ namespace LodgeMinutes.UserControls
         /// <returns></returns>
         private bool SaveSuspension()
         {
-            var message = String.Format( "{0} was suspended on {1}, were the grand lodge policies documented and followd - {2}.", this.tbSuspension.Text, this.dtSuspension.Value.Value.ToShortDateString(), this.cbSuspension.IsChecked );
+            var message = String.Format("Upon recommendation of the Finance Committee it was voted that ({0}) be suspended for nonpayment of dues.Such suspension to take effect ({1}), if his dues were not received by the Secretary on or before that date.", this.tbSuspension.Text, this.dtSuspension.Value.Value.ToShortDateString() );
 
             MinutesViewModel.Instance.Notes = String.Format( "{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine, message );
 
