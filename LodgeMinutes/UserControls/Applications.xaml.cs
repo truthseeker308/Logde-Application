@@ -37,130 +37,6 @@ namespace LodgeMinutes.UserControls
         #region Button Methods
 
         /// <summary>
-        /// Handles the Click event of the buttonApplicationType control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonApplicationType_Click( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                // we need to check if we have a checked radio button value
-                var hasValidRadioButton = true;
-
-                var message = String.Empty;
-
-                // check the first radio button group
-                if ( ( this.rbRead.IsChecked.HasValue && !this.rbRead.IsChecked.Value ) &&
-                    ( this.rbBalloted.IsChecked.HasValue && !this.rbBalloted.IsChecked.Value ) )
-                {
-                    message = "Read or balloted must be selected.";
-                    hasValidRadioButton = false;
-                }
-
-                // check the second radio button group
-                if ( ( this.rbForDegrees.IsChecked.HasValue && !this.rbForDegrees.IsChecked.Value ) &&
-                    ( this.rbForAffiliation.IsChecked.HasValue && !this.rbForAffiliation.IsChecked.Value ) &&
-                    ( this.rbFoReinstatement.IsChecked.HasValue && !this.rbFoReinstatement.IsChecked.Value ) )
-                {
-                    message = "For type must be selected.";
-                    hasValidRadioButton = false;
-                }
-
-                if( hasValidRadioButton )
-                {
-                    this.SaveApplicantType();
-
-                    this.rbRead.IsChecked = false;
-                    this.rbBalloted.IsChecked = false;
-                    this.rbForDegrees.IsChecked = false;
-                    this.rbForAffiliation.IsChecked = false;
-                    this.rbFoReinstatement.IsChecked = false;
-
-                    MessageBox.Show( "Applicant data saved.","Success" );
-                }
-                else
-                {
-                    MessageBox.Show(message,"Error",MessageBoxButton.OK,MessageBoxImage.Error); ;
-                }
-            }
-            catch ( Exception ex )
-            {
-                LogHelper.LogError( ex );
-                MessageBox.Show( "An error occured.\nSee the error log for details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-        
-        /// <summary>
-        /// Handles the Click event of the buttonCommitApplicationName control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonCommitApplicationName_Click( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                if( !String.IsNullOrWhiteSpace(this.tbApplicantName.Text))
-                {
-                    this.tbApplicantName.BorderBrush = Brushes.Gray;
-                    this.tbApplicantName.ToolTip = null;
-
-                    this.SaveApplicantName();
-
-                    MessageBox.Show( "Applicant name saved.","Success" );
-                    
-                }
-                else
-                {
-                    this.tbApplicantName.BorderBrush = Brushes.Red;
-                    this.tbApplicantName.ToolTip = "This field is required.";
-                }
-            }
-            catch(Exception ex)
-            {
-                LogHelper.LogError( ex );
-                MessageBox.Show( "An error occured.\nSee the error log for details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-        
-        /// <summary>
-        /// Handles the Click event of the buttonInvestigationReport control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
-        private void buttonInvestigationReport_Click( object sender, RoutedEventArgs e )
-        {
-            try
-            {
-                Mouse.OverrideCursor = Cursors.Wait;
-
-                this.SaveInvestigationReport();
-
-            }
-            catch ( Exception ex )
-            {
-                LogHelper.LogError( ex );
-                MessageBox.Show( "An error occured.\nSee the error log for details.", "Error", MessageBoxButton.OK, MessageBoxImage.Error );
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
-        }
-
-        /// <summary>
         /// Handles the Click event of the buttonOutcome control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -171,15 +47,8 @@ namespace LodgeMinutes.UserControls
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                if ( ( this.rbPassed.IsChecked.HasValue && !this.rbRead.IsChecked.Value ) &&
-                    ( this.rbFailed.IsChecked.HasValue && !this.rbFailed.IsChecked.Value ) )
-                {
-                    MessageBox.Show( "Passed or failed must be selected." );
-                }
-                else
-                {
-                    this.SavePassedOrFailed();
-                }
+                this.SaveApplicant();
+               
             }
             catch ( Exception ex )
             {
@@ -197,61 +66,102 @@ namespace LodgeMinutes.UserControls
         #region Private Methods
 
         /// <summary>
-        /// Saves the investigation report.
+        /// Saves the name of the applicant.
         /// </summary>
-        private void SaveInvestigationReport()
+        private void SaveApplicant()
         {
-            MinutesViewModel.Instance.Notes = String.Format( "{0} {1}Investigation commitee report - {2}", MinutesViewModel.Instance.Notes, Environment.NewLine, cbInvestigation.Text );
-            MinutesViewModel.Instance.Save();
-        }
+            var message = String.Empty;
 
-        /// <summary>
-        /// Saves the passed or failed.
-        /// </summary>
-        private void SavePassedOrFailed()
-        {
-            string passed = rbPassed.IsChecked.HasValue && rbPassed.IsChecked.Value ? "Passed" : "Failed";
+            var type = GetApplicationType();
 
-            MinutesViewModel.Instance.Notes = String.Format( "{0} {1}Applicant vote - {2}", MinutesViewModel.Instance.Notes, Environment.NewLine, passed );
-            MinutesViewModel.Instance.Save();
-        }
+            var readOrBalloted = (this.rbRead.IsChecked.HasValue && this.rbRead.IsChecked.Value) ? "read" : "balloted";
 
-        /// <summary>
-        /// Saves the type of the applicant.
-        /// </summary>
-        private void SaveApplicantType()
-        {
-            string type = rbRead.IsChecked.HasValue && rbRead.IsChecked.Value ? "Read" : "Balloted";
-            string degree = String.Empty;
+            message = String.Format("An Application {0} from {1} was {2}", type, this.tbApplicantName.Text, readOrBalloted);
 
-            if( rbRead.IsChecked.HasValue && rbRead.IsChecked.Value )
+            // handle read or balloted
+            if( this.rbRead.IsChecked.HasValue && this.rbRead.IsChecked.Value)
             {
-                degree = "For degrees";
-            }
-            else if( rbRead.IsChecked.HasValue && rbRead.IsChecked.Value )
-            {
-                degree = "For affiliation";
+                message = String.Concat(message, " at ", DateTime.Now.ToShortDateString(), ". The application will be referred to an Investigating Committee.");
             }
             else
             {
-                degree = "For resintatment M 5 years";
+                message = String.Concat(message, ". The Investigation Committee report was ", this.cbInvestigation.Text, " and ", this.tbApplicantName.Text, " was elected to ", GetBallotType() );
+
+                if (this.rbFailed.IsChecked.HasValue && this.rbFailed.IsChecked.Value)
+                {
+                    message = String.Concat(message, ". The Investigation Committee report was ", this.cbInvestigation.Text, " and failed to pass.");
+                }
+
             }
 
-            MinutesViewModel.Instance.Notes = String.Format( "{0} {1}Applicant Type - {2} and {3}", MinutesViewModel.Instance.Notes, Environment.NewLine, type, degree );
+            MinutesViewModel.Instance.Notes = String.Format("{0}{1}{2}", MinutesViewModel.Instance.Notes, Environment.NewLine,message );
             MinutesViewModel.Instance.Save();
 
         }
 
-        /// <summary>
-        /// Saves the name of the applicant.
-        /// </summary>
-        private void SaveApplicantName()
+        private string GetBallotType()
         {
-            MinutesViewModel.Instance.Notes = String.Format( "{0} {1}Applicant name {2}", MinutesViewModel.Instance.Notes, Environment.NewLine, tbApplicantName.Text );
-            MinutesViewModel.Instance.Save();
+            var result = String.Empty;
+
+            if (this.rbForDegrees.IsChecked.HasValue && this.rbForDegrees.IsChecked.Value)
+            {
+                result = "for the Degrees";
+            }
+            else if (this.rbForAffiliation.IsChecked.HasValue && this.rbForAffiliation.IsChecked.Value)
+            {
+                result = "for Affilitation";
+            }
+            else
+            {
+                result = "for Reinstatement";
+            }
+
+            return result;
+        }
+
+        private string GetApplicationType()
+        {
+            var result = String.Empty;
+
+            if (this.rbForDegrees.IsChecked.HasValue && this.rbForDegrees.IsChecked.Value)
+            {
+                result = "to take the degrees in " + SettingsViewModel.Instance.LodgeAbreviatedName;
+            }
+            else if(this.rbForAffiliation.IsChecked.HasValue && this.rbForAffiliation.IsChecked.Value)
+            {
+                result = "to take membership in " + SettingsViewModel.Instance.LodgeAbreviatedName;      
+            }
+            else
+            {
+                result = "to reinstated membership in " + SettingsViewModel.Instance.LodgeAbreviatedName;
+            }
+
+            return result;
+
         }
 
         #endregion
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbRead_Checked(object sender, RoutedEventArgs e)
+        {
+            // read means we gray out investigation
+            this.cbInvestigation.IsEnabled = this.rbPassed.IsEnabled = this.rbFailed.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbBalloted_Checked(object sender, RoutedEventArgs e)
+        {
+           this.cbInvestigation.IsEnabled = this.rbPassed.IsEnabled = this.rbFailed.IsEnabled = true;
+        }
 
     }
 }
