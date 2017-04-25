@@ -55,11 +55,11 @@
             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Lodge Abreviated Name</Label>
             <TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding LodgeAbreviatedName, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Total Meeting Current Count</Label>
-            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding TotalMeetingCurrentCount, Mode=TwoWay}" />
+            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Special Meeting Current Count</Label>
+            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding SpecialMeetingCount, Mode=TwoWay}" />
 
             <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Regular Meeting Current Count</Label>
-            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Value="{Binding RegularMeetingCurrentCount, Mode=TwoWay}" />
+            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Value="{Binding RegularMeetingCount, Mode=TwoWay}" />
 
             <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Logo/Seal</Label>
             <Image Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"  HorizontalAlignment="Center" />
