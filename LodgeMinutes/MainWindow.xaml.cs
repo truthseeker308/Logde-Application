@@ -225,6 +225,15 @@ namespace LodgeMinutes
             {
                 Mouse.OverrideCursor = Cursors.Wait;
 
+                if(MinutesViewModel.Instance.Export())
+                {
+                    MessageBox.Show("Minutes exported successfully.", "Export Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error exporting minutes.\nIf this error continues please contact support.", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
             }
             finally
             {
@@ -275,7 +284,14 @@ namespace LodgeMinutes
                 Mouse.OverrideCursor = Cursors.Wait;
 
                 // create a new minutes set and re-bind it
-                MinutesViewModel.Instance.Export();
+                if(MinutesViewModel.Instance.Export())
+                {
+                    MessageBox.Show("Minutes exported successfully.", "Export Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error exporting minutes.\nIf this error continues please contact support.", "Export Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             finally
             {

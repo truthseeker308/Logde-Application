@@ -162,18 +162,42 @@ namespace LodgeMinutesMiddleWare.Views
         /// Exports this instance to a word document.
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public void Export()
+        public bool Export()
         {
-            // export to the specified file format
-            var filename = SettingsViewModel.Instance.LastFilename.Replace(".txt", ".docx");
+            var result = true;
 
-            var document = new Document();
+            try
+            {
+                // do some basic validation
+                if(String.IsNullOrWhiteSpace(SettingsViewModel.Instance.LastFilename))
+                {
+                    throw new InvalidOperationException("No notes filename was found to export from.");
+                }
 
-            var paragraph = document.AddSection().AddParagraph();
+                if(String.IsNullOrWhiteSpace(this.Notes))
+                {
+                    throw new InvalidOperationException("No note data found to export.");
+                }
 
-            paragraph.AppendText( this.Notes );
+                // export to the specified file format
+                var filename = SettingsViewModel.Instance.LastFilename.Replace(".txt", ".docx");
 
-            document.SaveToFile(filename, FileFormat.Docx2013);
+                
+                var document = new Document();
+
+                var paragraph = document.AddSection().AddParagraph();
+
+                paragraph.AppendText(this.Notes);
+
+                document.SaveToFile(filename, FileFormat.Docx2013);
+            }
+            catch(Exception ex)
+            {
+                LogHelper.LogError(ex);
+                result = false;
+            }
+
+            return result;
 
         }
 
