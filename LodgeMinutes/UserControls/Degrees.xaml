@@ -9,7 +9,6 @@
         <StackPanel Orientation="Vertical">
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Degrees</Label>
             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">First Section</Label>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -22,7 +21,7 @@
                             <ComboBoxItem>Fellowcraft</ComboBoxItem>
                             <ComboBoxItem>Master Mason</ComboBoxItem>
                         </ComboBox>
-                        <Label Margin="0,15,0,0" HorizontalAlignment="Center">If more than 5 candidates, was dispensation recieved?</Label>
+                        <Label Margin="0,15,0,0" HorizontalAlignment="Center">If more than 5 candidates, was dispensation received?</Label>
                         <CheckBox HorizontalAlignment="Center" Name="checkboxDispensation" IsChecked="False">Yes</CheckBox>
                         <Button Margin="0,5,0,0" Width="200" Name="buttonFirstBegun" Click="buttonFirstBegun_Click">
                             <Button.Effect>
