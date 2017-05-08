@@ -2,6 +2,8 @@
 using LodgeMinutesMiddleWare.Helpers;
 using LodgeMinutesMiddleWare.Models;
 using LodgeMinutesMiddleWare.Views;
+using Spire.Doc;
+using Spire.Doc.Documents;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -162,7 +164,17 @@ namespace LodgeMinutesMiddleWare.Views
         /// <exception cref="NotImplementedException"></exception>
         public void Export()
         {
-            // TODO: implement our word export here
+            // export to the specified file format
+            var filename = SettingsViewModel.Instance.LastFilename.Replace(".txt", ".docx");
+
+            var document = new Document();
+
+            var paragraph = document.AddSection().AddParagraph();
+
+            paragraph.AppendText( this.Notes );
+
+            document.SaveToFile(filename, FileFormat.Docx2013);
+
         }
 
         #endregion
