@@ -52,7 +52,7 @@
             <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelCenterBold}" >Lodge Full Name</Label>
             <TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" Text="{Binding LodgeName, Mode=TwoWay}"></TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Lodge Abreviated Name</Label>
+            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Lodge Abbreviated Name</Label>
             <TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding LodgeAbreviatedName, Mode=TwoWay}"></TextBox>
 
             <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelCenterBold}">Special Meeting Current Count</Label>
